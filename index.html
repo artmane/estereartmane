@@ -11,33 +11,50 @@
 
 <div class="layout">
 
-  <nav class="menu">
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="menu" id="main-menu">
 
     <div class="menu-section">
-      <div class="menu-title" onclick="toggleWorks()">
+      <div class="menu-title" id="works-title" onclick="handleWorksClick()">
         <span data-en="Works" data-lv="Darbi">Works</span>
       </div>
       <div class="submenu" id="works-sub">
 
-        <div class="submenu-item" id="photo-item" onclick="showPhotography()">
+        <div class="submenu-item" id="photo-item" onclick="showPhotography(); closeMobileMenu()">
           <span data-en="photography" data-lv="fotogrāfija">photography</span>
         </div>
         <div class="project-links" id="photo-sub">
-          <div class="project-link" onclick="scrollToProject('project1')">
-            <span data-en="project 1" data-lv="projekts 1">project 1</span>
+          <div class="project-link" onclick="scrollToProject('illuminations'); closeMobileMenu()">
+            <span data-en="illuminations" data-lv="illuminations">illuminations</span>
           </div>
-          <div class="project-link" onclick="scrollToProject('project2')">
-            <span data-en="project 2" data-lv="projekts 2">project 2</span>
+          <div class="project-link" onclick="scrollToProject('notes'); closeMobileMenu()">
+            <span data-en="notes" data-lv="notes">notes</span>
+          </div>
+          <div class="project-link" onclick="scrollToProject('green'); closeMobileMenu()">
+            <span data-en="green" data-lv="green">green</span>
+          </div>
+          <div class="project-link" onclick="scrollToProject('analogbw'); closeMobileMenu()">
+            <span data-en="analog b&w" data-lv="analog b&w">analog b&w</span>
+          </div>
+          <div class="project-link" onclick="scrollToProject('studio'); closeMobileMenu()">
+            <span data-en="studio" data-lv="studio">studio</span>
+          </div>
+          <div class="project-link" onclick="scrollToProject('analogcolor'); closeMobileMenu()">
+            <span data-en="analog color" data-lv="analog color">analog color</span>
           </div>
         </div>
 
-        <div class="submenu-item" onclick="showTattoo()">
+        <div class="submenu-item" id="tattoo-item" onclick="showTattoo(); closeMobileMenu()">
           <span data-en="tattoo" data-lv="tetovējums">tattoo</span>
         </div>
 
-        <div class="submenu-item dimmed">
+        <div class="submenu-item" id="graphic-item" onclick="showGraphic(); closeMobileMenu()">
           <span data-en="graphic work" data-lv="grafiskais darbs">graphic work</span>
         </div>
+
         <div class="submenu-item dimmed">
           <span data-en="video" data-lv="video">video</span>
         </div>
@@ -45,7 +62,7 @@
           <span data-en="curation" data-lv="kuratorija">curation</span>
         </div>
 
-        <div class="submenu-item" onclick="showTexts()">
+        <div class="submenu-item" id="texts-item" onclick="showTexts(); closeMobileMenu()">
           <span data-en="contemporary text" data-lv="laikmetīgais teksts">contemporary text</span>
         </div>
 
@@ -53,18 +70,20 @@
     </div>
 
     <div class="menu-section">
-      <div class="menu-title" onclick="showAbout()">
+      <div class="menu-title" id="about-title" onclick="showAbout(); closeMobileMenu()">
         <span data-en="About" data-lv="Par mani">About</span>
       </div>
     </div>
 
     <div class="menu-section">
-      <div class="menu-title" onclick="showContact()">
+      <div class="menu-title" id="contact-title" onclick="showContact(); closeMobileMenu()">
         <span data-en="Contact" data-lv="Kontakti">Contact</span>
       </div>
     </div>
 
   </nav>
+
+  <div class="menu-overlay" id="menu-overlay" onclick="closeMobileMenu()"></div>
 
   <div class="lang-switch">
     <span class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</span>
@@ -76,8 +95,8 @@
 
     <!-- HOME -->
     <div id="home">
-      <h1>Estere Artmane</h1>
-      <p class="tagline">
+      <h1 onclick="showGrid()" style="cursor:pointer;">Estere Artmane</h1>
+      <p class="tagline" onclick="showAbout()" style="cursor:pointer;">
         <span data-en="Multidisciplinary visual artist working with text, image, motion, tattoo..."
               data-lv="Multidisciplināra vizuālā māksliniece, kas strādā ar tekstu, attēlu, kustību, tetovējumu...">
           Multidisciplinary visual artist working with text, image, motion, tattoo...
@@ -86,16 +105,81 @@
       <img src="images/profile_.jpg" class="profile-img" alt="Estere Artmane">
     </div>
 
+    <!-- WORKS GRID -->
+    <div id="works-grid" class="page">
+      <h1 class="page-title">
+        <span data-en="Works" data-lv="Darbi">Works</span>
+      </h1>
+      <div class="works-grid">
+        <div class="grid-item" onclick="scrollToProject('illuminations'); showPhotography();">
+          <img src="images/IMG_2566.JPG" alt="">
+          <div class="grid-label"><span data-en="photography" data-lv="fotogrāfija">photography</span></div>
+        </div>
+        <div class="grid-item" onclick="showPhotography()">
+          <img src="images/foto_2.jpg" alt="">
+          <div class="grid-label"><span data-en="photography" data-lv="fotogrāfija">photography</span></div>
+        </div>
+        <div class="grid-item" onclick="showPhotography()">
+          <img src="images/foto_1.jpg" alt="">
+          <div class="grid-label"><span data-en="photography" data-lv="fotogrāfija">photography</span></div>
+        </div>
+        <div class="grid-item" onclick="showTattoo()">
+          <img src="images/instagram1.jpg" alt="">
+          <div class="grid-label"><span data-en="tattoo" data-lv="tetovējums">tattoo</span></div>
+        </div>
+        <div class="grid-item" onclick="showTattoo()">
+          <img src="images/instagram2.jpg" alt="">
+          <div class="grid-label"><span data-en="tattoo" data-lv="tetovējums">tattoo</span></div>
+        </div>
+        <div class="grid-item" onclick="showGraphic()">
+          <img src="images/cv_new-02.png" alt="">
+          <div class="grid-label"><span data-en="graphic work" data-lv="grafiskais darbs">graphic work</span></div>
+        </div>
+        <div class="grid-item" onclick="showGraphic()">
+          <img src="images/cv_new-05.png" alt="">
+          <div class="grid-label"><span data-en="graphic work" data-lv="grafiskais darbs">graphic work</span></div>
+        </div>
+        <div class="grid-item" onclick="showGraphic()">
+          <img src="images/kafija1.jpg" alt="">
+          <div class="grid-label"><span data-en="graphic work" data-lv="grafiskais darbs">graphic work</span></div>
+        </div>
+        <div class="grid-item" onclick="showGraphic()">
+          <img src="images/estere_artmane_laivubrauciens.png" alt="">
+          <div class="grid-label"><span data-en="graphic work" data-lv="grafiskais darbs">graphic work</span></div>
+        </div>
+        <div class="grid-item" onclick="showTexts()">
+          <img src="images/instagram3.jpg" alt="">
+          <div class="grid-label"><span data-en="text" data-lv="teksts">text</span></div>
+        </div>
+      </div>
+    </div>
+
     <!-- PHOTOGRAPHY -->
     <div id="photography" class="page">
       <h1 class="page-title">
         <span data-en="Photography" data-lv="Fotogrāfija">Photography</span>
       </h1>
 
-      <div class="project-section" id="project1">
-        <p class="project-label">
-          <span data-en="Project 1" data-lv="Projekts 1">Project 1</span>
+      <!-- ILLUMINATIONS -->
+      <div class="project-section" id="illuminations">
+        <p class="project-label"><span data-en="Illuminations" data-lv="Illuminations">Illuminations</span></p>
+        <p class="project-desc">
+          <span data-en="A series of photographs exploring light as a subject — illuminated surfaces, glowing edges, and the quiet drama of artificial light in urban space."
+                data-lv="Fotogrāfiju sērija, kurā gaisma ir galvenais subjekts — apgaismotas virsmas, spīdošas malas un mākslīgās gaismas klusā drāma pilsētas telpā.">
+            A series of photographs exploring light as a subject — illuminated surfaces, glowing edges, and the quiet drama of artificial light in urban space.
+          </span>
         </p>
+        <img src="images/IMG_2566.JPG" alt="">
+        <img src="images/IMG_2577.JPG" alt="">
+        <img src="images/IMG_2593.JPG" alt="">
+        <img src="images/vghj.jpg" alt="">
+      </div>
+
+      <div class="project-divider"></div>
+
+      <!-- NOTES -->
+      <div class="project-section" id="notes">
+        <p class="project-label"><span data-en="Notes" data-lv="Piezīmes">Notes</span></p>
         <p class="project-desc">
           <span data-en="This photographic series explores everyday spaces and quiet moments — light falling through windows, the stillness between gestures, details overlooked in ordinary life."
                 data-lv="Šī fotogrāfiju sērija pēta ikdienas telpas un klusus mirkļus — gaismu, kas krīt caur logiem, klusumu starp žestiem, detaļas, kuras ikdienas dzīvē bieži paliek nepamanītas.">
@@ -107,23 +191,79 @@
         <img src="images/foto_3.jpg" alt="">
         <img src="images/foto_4.jpg" alt="">
         <img src="images/foto_5.jpg" alt="">
+        <img src="images/IMG_9830.jpg" alt="">
       </div>
 
       <div class="project-divider"></div>
 
-      <div class="project-section" id="project2">
-        <p class="project-label">
-          <span data-en="Project 2" data-lv="Projekts 2">Project 2</span>
-        </p>
+      <!-- GREEN -->
+      <div class="project-section" id="green">
+        <p class="project-label"><span data-en="Green" data-lv="Green">Green</span></p>
         <p class="project-desc">
           <span data-en="A series tracing urban rhythms and visual fragments found in the city — layered compositions that reflect on movement, memory, and spatial perception."
                 data-lv="Sērija, kas izseko pilsētas ritmus un vizuālos fragmentus — slāņainas kompozīcijas, kas atspoguļo kustību, atmiņu un telpisko uztveri.">
             A series tracing urban rhythms and visual fragments found in the city — layered compositions that reflect on movement, memory, and spatial perception.
           </span>
         </p>
-        <img src="images/project1.jpg" alt="">
+        <img src="images/IMG_9719.jpg" alt="">
+        <img src="images/IMG_9742.jpg" alt="">
         <img src="images/project2.jpg" alt="">
       </div>
+
+      <div class="project-divider"></div>
+
+      <!-- ANALOG B&W -->
+      <div class="project-section" id="analogbw">
+        <p class="project-label"><span data-en="Analog B&W" data-lv="Analog B&W">Analog B&W</span></p>
+        <p class="project-desc">
+          <span data-en="A series of analog black and white photographs — grain, contrast, and the materiality of film as part of the image."
+                data-lv="Analogo melnbalto fotogrāfiju sērija — grauds, kontrasts un filmas materialitāte kā attēla daļa.">
+            A series of analog black and white photographs — grain, contrast, and the materiality of film as part of the image.
+          </span>
+        </p>
+        <img src="images/IMG_6426.jpg" alt="">
+        <img src="images/IMG_6427.jpg" alt="">
+        <img src="images/IMG_6432.jpg" alt="">
+        <img src="images/IMG_6438.jpg" alt="">
+        <img src="images/IMG_6441.jpg" alt="">
+        <img src="images/IMG_6444.jpg" alt="">
+        <img src="images/IMG_6446.jpg" alt="">
+        <img src="images/IMG_6451.jpg" alt="">
+      </div>
+
+      <div class="project-divider"></div>
+
+      <!-- STUDIO -->
+      <div class="project-section" id="studio">
+        <p class="project-label"><span data-en="Studio Photography" data-lv="Studio Photography">Studio Photography</span></p>
+        <p class="project-desc">
+          <span data-en="Studio portraits and object photography — controlled light, direct gaze, and the tension between subject and background."
+                data-lv="Studijas portreti un objektu fotogrāfija — kontrolēta gaisma, tieša skatiens un spriedze starp subjektu un fonu.">
+            Studio portraits and object photography — controlled light, direct gaze, and the tension between subject and background.
+          </span>
+        </p>
+        <img src="images/portrets_8bit.jpg" alt="">
+        <img src="images/IMG_5737_8bit_mazakkontrastskurpes.jpg" alt="">
+        <img src="images/IMG_5823_8bit.jpg" alt="">
+      </div>
+
+      <div class="project-divider"></div>
+
+      <!-- ANALOG COLOR -->
+      <div class="project-section" id="analogcolor">
+        <p class="project-label"><span data-en="Analog Color" data-lv="Analog Color">Analog Color</span></p>
+        <p class="project-desc">
+          <span data-en="Analog color film photographs — saturated tones, light leaks, and the unpredictability of chemical processes."
+                data-lv="Analogo krāsu filmas fotogrāfijas — piesātinātas toņi, gaismas noplūdes un ķīmisko procesu neparedzamība.">
+            Analog color film photographs — saturated tones, light leaks, and the unpredictability of chemical processes.
+          </span>
+        </p>
+        <img src="images/APDQ8368.PNG" alt="">
+        <img src="images/GBHI4458.PNG" alt="">
+        <img src="images/HLHE0442.PNG" alt="">
+        <img src="images/XRTL1267.PNG" alt="">
+      </div>
+
     </div>
 
     <!-- TATTOO -->
@@ -135,7 +275,6 @@
         <span data-en="Handpoke tattoo work." data-lv="Handpoke tetovējumu darbi.">Handpoke tattoo work.</span>
       </p>
       <div class="tattoo-grid">
-
         <div class="insta-card">
           <a href="https://www.instagram.com/p/DP1Gh9fDLl5/" target="_blank">
             <img src="images/instagram1.jpg" alt="tattoo 1">
@@ -145,7 +284,6 @@
             </div>
           </a>
         </div>
-
         <div class="insta-card">
           <a href="https://www.instagram.com/p/C22JQ75CjGj/" target="_blank">
             <img src="images/instagram2.jpg" alt="tattoo 2">
@@ -155,7 +293,6 @@
             </div>
           </a>
         </div>
-
         <div class="insta-card">
           <a href="https://www.instagram.com/p/DVtOlkujKlI/" target="_blank">
             <img src="images/instagram3.jpg" alt="tattoo 3">
@@ -165,8 +302,81 @@
             </div>
           </a>
         </div>
-
       </div>
+    </div>
+
+    <!-- GRAPHIC WORK -->
+    <div id="graphic" class="page">
+      <h1 class="page-title">
+        <span data-en="Graphic Work" data-lv="Grafiskais darbs">Graphic Work</span>
+      </h1>
+
+      <!-- T-SHIRT DESIGN -->
+      <div class="project-section" id="tshirt">
+        <p class="project-label"><span data-en="T-shirt Design" data-lv="T-kreklu dizains">T-shirt Design</span></p>
+        <p class="project-desc">
+          <span data-en='These T-shirt designs created in collaboration with the creative collective Lonexone during an internship explore image-making within everyday circulation. Printed on both sides, the designs push the boundary between abstract forms and objects we recognize.'
+                data-lv='Šie T-kreklu dizaini, kas radīti sadarbībā ar radošo kolektīvu Lonexone stažēšanās laikā, pēta attēlu veidošanu ikdienas apritē. Abpusēji apdrukāti, dizaini paplašina robežu starp abstraktām formām un objektiem, ko mēs atpazīstam.'>
+            These T-shirt designs created in collaboration with the creative collective Lonexone during an internship explore image-making within everyday circulation. Printed on both sides, the designs push the boundary between abstract forms and objects we recognize.
+          </span>
+        </p>
+        <img src="images/cv_new-02.png" alt="">
+        <img src="images/cv_new-03.png" alt="">
+        <img src="images/cv_new-04.png" alt="">
+      </div>
+
+      <div class="project-divider"></div>
+
+      <!-- ZINE -->
+      <div class="project-section" id="zine">
+        <p class="project-label"><span data-en="Zine for Remi Cat Rescue" data-lv="Zine priekš Remi kaķu patversmes">Zine for Remi Cat Rescue</span></p>
+        <p class="project-desc">
+          <span data-en="A zine created for Remi Cat Rescue Center — combining image and text to support the organization and raise visibility for animal welfare."
+                data-lv="Zine, kas radīts priekš Remi kaķu glābšanas centra — apvienojot attēlu un tekstu, lai atbalstītu organizāciju un palielinātu dzīvnieku labturības redzamību.">
+            A zine created for Remi Cat Rescue Center — combining image and text to support the organization and raise visibility for animal welfare.
+          </span>
+        </p>
+        <img src="images/cv_new-05.png" alt="">
+        <img src="images/cv_new-06.png" alt="">
+        <img src="images/cv_new-07.png" alt="">
+      </div>
+
+      <div class="project-divider"></div>
+
+      <!-- LAIVU BRAUCIENS -->
+      <div class="project-section" id="laivu">
+        <p class="project-label"><span data-en="Laivu brauciens" data-lv="Laivu brauciens">Laivu brauciens</span></p>
+        <p class="project-desc">
+          <span data-en="Moving by boat or any other vehicle does not always mean that the motion is carried out by the device called a vessel. Willingly or not, the passenger themselves can become an engineering structure. Such coincidences create unforgettable memories, which often shape someone's childhood — muddy footprints, dead fish, loud laughter, first friendships and great physical effort."
+                data-lv="Ne vienmēr pārvietošanās ar laivu vai kādu citu transporta līdzekli nozīmē to, ka kustību veidos sauktā iekārta. Gribot negribot par inženierisku būvi var kļūst arī pats patērētājs. Šādas nejaušības veido neaizmirstamas atmiņas, kuras nereti veido kāda bērnību. Dubļainas pēdas, mirušas zivis, skaļi smiekli, pirmās draudzības un liela fiziska piepūle.">
+            Moving by boat or any other vehicle does not always mean that the motion is carried out by the device called a vessel. Willingly or not, the passenger themselves can become an engineering structure. Such coincidences create unforgettable memories, which often shape someone's childhood — muddy footprints, dead fish, loud laughter, first friendships and great physical effort.
+          </span>
+        </p>
+        <img src="images/estere_artmane_laivubrauciens.png" alt="">
+        <p class="project-link-out">
+          <a href="https://lnmm.gov.lv/latvijas-nacionalais-makslas-muzejs/izstades/par-pieejamibu-izstade-laivu-brauciens-divreiz-viena-upe-neiekapsipar-pieeja/izstades-teksti-digitali" target="_blank">
+            <span data-en="View exhibition texts ↗" data-lv="Skatīt izstādes tekstus ↗">View exhibition texts ↗</span>
+          </a>
+        </p>
+      </div>
+
+      <div class="project-divider"></div>
+
+      <!-- KAFIJA / ZIEDONIS -->
+      <div class="project-section" id="ziedonis">
+        <p class="project-label">
+          <span data-en='Collaboration with "Ziedonis" Museum' data-lv='Sadarbība ar "Ziedoņa" muzeju'>Collaboration with "Ziedonis" Museum</span>
+        </p>
+        <p class="project-desc">
+          <span data-en="Collaboration with Ziedonis Museum on a series of creative projects for a charity initiative supporting the restoration of the museum's roof. In parallel, work with Rocket Bean Roastery on an interactive, custom coffee packaging design, including posters, banners, special tickets, and a coffee bag."
+                data-lv="Sadarbība ar Ziedoņa muzeju radošu projektu sērijā labdarības iniciatīvai muzeja jumta restaurācijas atbalstam. Paralēli — darbs ar Rocket Bean Roastery pie interaktīva, pielāgota kafijas iepakojuma dizaina, ieskaitot plakātus, banerus, īpašas biļetes un kafijas maisiņu.">
+            Collaboration with Ziedonis Museum on a series of creative projects for a charity initiative supporting the restoration of the museum's roof. In parallel, work with Rocket Bean Roastery on an interactive, custom coffee packaging design, including posters, banners, special tickets, and a coffee bag.
+          </span>
+        </p>
+        <img src="images/kafija1.jpg" alt="">
+        <img src="images/kafija2.png" alt="">
+      </div>
+
     </div>
 
     <!-- TEXTS -->
@@ -174,15 +384,13 @@
       <h1 class="page-title">
         <span data-en="Contemporary Text" data-lv="Laikmetīgais teksts">Contemporary Text</span>
       </h1>
-
       <div class="texts-list">
 
         <div class="text-entry">
           <div class="text-entry-meta">
             <span class="text-entry-year">2024</span>
             <a href="https://satori.lv/article/bazars-par-pankiem-berga-bazara" target="_blank" class="text-entry-title">
-              <span data-en='Bazārs par pankiem "Berga bazārā"'
-                    data-lv='Bazārs par pankiem "Berga bazārā"'>Bazārs par pankiem "Berga bazārā"</span>
+              <span data-en='Bazārs par pankiem "Berga bazārā"' data-lv='Bazārs par pankiem "Berga bazārā"'>Bazārs par pankiem "Berga bazārā"</span>
               <span class="text-entry-source">— Satori.lv ↗</span>
             </a>
           </div>
@@ -236,9 +444,9 @@
       <div class="about-content">
         <p class="location">Riga, Latvija</p>
         <p>
-          <span data-en="Artistic practice working across photography, tattoo, text, and moving image — creating work that sits between documentation and fiction."
-                data-lv="Mākslinieciskā prakse aptver fotogrāfiju, tetovējumu, tekstu un kustīgo attēlu — darbi, kas balansē starp dokumentāciju un fikciju.">
-            Artistic practice working across photography, tattoo, text, and moving image — creating work that sits between documentation and fiction.
+          <span data-en="I am a multidisciplinary visual artist based in Latvia, exploring contemporary visual language through video, sound, photography, illustration, interactive media and written text. My practice often moves between digital and physical formats, combining image-making with experimentation and returning to a childlike curiosity and my obsessive drive to create. Working across still and moving image, immersive media, graphic design, tattooing, and participatory projects, I am fascinated in how images circulate, transform, and exist in different contexts — from screen to skin, from exhibition space to public space. I explore perception, randomness, and authorship, questioning how meaning shifts when the viewer becomes a participant. My process is experimental and research-driven, shaped not only by artistic production and curatorial experience but also by personal experiences and the emotions they inspire."
+                data-lv="Esmu multidisciplināra vizuālā māksliniece no Latvijas, kas pēta laikmetīgo vizuālo valodu caur video, skaņu, fotogrāfiju, ilustrāciju, interaktīvajiem medijiem un rakstītu tekstu. Mana prakse bieži pārvietojas starp digitālajiem un fiziskajiem formātiem, apvienojot attēlu veidošanu ar eksperimentiem un atgriežoties pie bērnišķīgas zinātkāres un manas obsesīvās vēlmes radīt. Strādājot ar nekustīgiem un kustīgiem attēliem, imersīvajiem medijiem, grafikas dizainu, tetovēšanu un līdzdalības projektiem, mani fascinē tas, kā attēli cirkulē, transformējas un pastāv dažādos kontekstos — no ekrāna līdz ādai, no izstāžu telpas līdz publiskai telpai.">
+            I am a multidisciplinary visual artist based in Latvia, exploring contemporary visual language through video, sound, photography, illustration, interactive media and written text. My practice often moves between digital and physical formats, combining image-making with experimentation and returning to a childlike curiosity and my obsessive drive to create. Working across still and moving image, immersive media, graphic design, tattooing, and participatory projects, I am fascinated in how images circulate, transform, and exist in different contexts — from screen to skin, from exhibition space to public space. I explore perception, randomness, and authorship, questioning how meaning shifts when the viewer becomes a participant. My process is experimental and research-driven, shaped not only by artistic production and curatorial experience but also by personal experiences and the emotions they inspire.
           </span>
         </p>
 
@@ -250,17 +458,13 @@
         <div class="cv-body" id="cv-body">
 
           <div class="cv-section">
-            <h3 class="cv-heading">
-              <span data-en="Experience" data-lv="Pieredze">Experience</span>
-            </h3>
-
+            <h3 class="cv-heading"><span data-en="Experience" data-lv="Pieredze">Experience</span></h3>
             <div class="cv-year">2025</div>
             <ul>
               <li><span data-en="Participant in group exhibition Idēt, muldēt, klusēt at Jaunmoku pils" data-lv="Dalībniece grupas izstādē Idēt, muldēt, klusēt Jaunmoku pilī">Participant in group exhibition <em>Idēt, muldēt, klusēt</em> at Jaunmoku pils</span></li>
-              <li><span data-en="Text author for the multimedia exhibition Memory of Light at art space MALA" data-lv="Teksta autore multimediju izstādei Memory of Light mākslas telpā MALA">Text author for the multimedia exhibition <em>Memory of Light</em> at art space MALA</span></li>
+              <li><span data-en="Text author for multimedia exhibition Memory of Light at art space MALA" data-lv="Teksta autore multimediju izstādei Memory of Light mākslas telpā MALA">Text author for multimedia exhibition <em>Memory of Light</em> at art space MALA</span></li>
               <li><span data-en="Tattoo artist at cultural venues (Cehs, Lastādija) during public events" data-lv="Tetovētāja kultūras vietās (Cehs, Lastādija) publisko pasākumu laikā">Tattoo artist at cultural venues (Cehs, Lastādija) during public events</span></li>
             </ul>
-
             <div class="cv-year">2024</div>
             <ul>
               <li><span data-en="Author of articles for the cultural platform Satori" data-lv="Rakstu autore kultūras platformā Satori">Author of articles for the cultural platform Satori</span></li>
@@ -268,30 +472,26 @@
               <li><span data-en='Publication in Mākslas Žurnāls ("Street Art" section)' data-lv='Publikācija Mākslas Žurnālā (sadaļa "Ielu māksla")'>Publication in Mākslas Žurnāls ("Street Art" section)</span></li>
               <li><span data-en="Exhibition supervisor for Everything Is Fine Between Us" data-lv="Izstādes uzraudzītāja izstādei Everything Is Fine Between Us">Exhibition supervisor for <em>Everything Is Fine Between Us</em></span></li>
             </ul>
-
             <div class="cv-year">2023</div>
             <ul>
-              <li><span data-en="Co-curator of the international The Shake Down at the Homo Novus festival" data-lv="Līdzkuratore starptautiskajam The Shake Down Homo Novus festivālā">Co-curator of the international <em>The Shake Down</em> at the Homo Novus festival</span></li>
+              <li><span data-en="Co-curator of The Shake Down at the Homo Novus festival" data-lv="Līdzkuratore starptautiskajam The Shake Down Homo Novus festivālā">Co-curator of <em>The Shake Down</em> at the Homo Novus festival</span></li>
               <li><span data-en="Visual identity and poster design for The Shake Down" data-lv="Vizuālā identitāte un plakātu dizains The Shake Down">Visual identity and poster design for The Shake Down</span></li>
               <li><span data-en="Young curator at Bastard Festival, Trondheim (Norway)" data-lv="Jaunais kurators Bastard festivālā, Trondheimā (Norvēģija)">Young curator at Bastard Festival, Trondheim (Norway)</span></li>
               <li><span data-en="Artist at Lampa Conversation Festival" data-lv="Māksliniece Lampa sarunas festivālā">Artist at Lampa Conversation Festival</span></li>
-              <li><span data-en='Collaboration with creative collective Lonexone – T-shirt line "Unknown"' data-lv='Sadarbība ar radošo kolektīvu Lonexone – T-kreklu līnija "Unknown"'>Collaboration with creative collective Lonexone – T-shirt line "Unknown"</span></li>
-              <li><span data-en="Certified tattoo artist, working in handpoke technique" data-lv="Sertificēta tetovētāja, strādā handpoke tehnikā">Certified tattoo artist, working in handpoke technique</span></li>
+              <li><span data-en='Collaboration with Lonexone – T-shirt line "Unknown"' data-lv='Sadarbība ar Lonexone – T-kreklu līnija "Unknown"'>Collaboration with Lonexone – T-shirt line "Unknown"</span></li>
+              <li><span data-en="Certified tattoo artist, handpoke technique" data-lv="Sertificēta tetovētāja, handpoke tehnikā">Certified tattoo artist, handpoke technique</span></li>
             </ul>
-
             <div class="cv-year">2022</div>
             <ul>
               <li><span data-en="Guide for the performance Silence Falls" data-lv="Gide priekšnesumam Silence Falls">Guide for the performance <em>Silence Falls</em></span></li>
               <li><span data-en="Graduate of Pieci.lv DJ School" data-lv="Pieci.lv DJ skolas absolvente">Graduate of Pieci.lv DJ School</span></li>
               <li><span data-en="Barista at Piens un ledus" data-lv="Bariste kafejnīcā Piens un ledus">Barista at Piens un ledus</span></li>
-              <li><span data-en="Participant in the Erasmus project Everyday Sexism, Spain" data-lv="Erasmus projekta Everyday Sexism dalībniece, Spānija">Participant in the Erasmus project <em>Everyday Sexism</em>, Spain</span></li>
+              <li><span data-en="Participant in Erasmus project Everyday Sexism, Spain" data-lv="Erasmus projekta Everyday Sexism dalībniece, Spānija">Participant in Erasmus project <em>Everyday Sexism</em>, Spain</span></li>
             </ul>
           </div>
 
           <div class="cv-section">
-            <h3 class="cv-heading">
-              <span data-en="Education" data-lv="Izglītība">Education</span>
-            </h3>
+            <h3 class="cv-heading"><span data-en="Education" data-lv="Izglītība">Education</span></h3>
             <ul>
               <li><span data-en="Art Academy of Latvia — Visual Communication BA (ongoing, year 2)" data-lv="Latvijas Mākslas akadēmija — Vizuālā komunikācija BA (turpinās, 2. kurss)">Art Academy of Latvia — Visual Communication BA (ongoing, year 2)</span></li>
               <li><span data-en="Latvian Centre for Contemporary Art — Art Critics School" data-lv="Latvijas Laikmetīgās mākslas centrs — Mākslas kritiķu skola">Latvian Centre for Contemporary Art — Art Critics School</span></li>
@@ -302,9 +502,7 @@
           </div>
 
           <div class="cv-section">
-            <h3 class="cv-heading">
-              <span data-en="Skills" data-lv="Prasmes">Skills</span>
-            </h3>
+            <h3 class="cv-heading"><span data-en="Skills" data-lv="Prasmes">Skills</span></h3>
             <ul>
               <li><span data-en="Adobe — Photoshop, Illustrator, InDesign, Premiere Pro, Acrobat, After Effects, Audition, Lightroom" data-lv="Adobe — Photoshop, Illustrator, InDesign, Premiere Pro, Acrobat, After Effects, Audition, Lightroom">Adobe — Photoshop, Illustrator, InDesign, Premiere Pro, Acrobat, After Effects, Audition, Lightroom</span></li>
               <li><span data-en="Other — DaVinci, Dragonframe, Blender, Figma, Ableton, p5.js" data-lv="Citi — DaVinci, Dragonframe, Blender, Figma, Ableton, p5.js">Other — DaVinci, Dragonframe, Blender, Figma, Ableton, p5.js</span></li>
@@ -315,9 +513,7 @@
           </div>
 
           <div class="cv-section">
-            <h3 class="cv-heading">
-              <span data-en="Languages" data-lv="Valodas">Languages</span>
-            </h3>
+            <h3 class="cv-heading"><span data-en="Languages" data-lv="Valodas">Languages</span></h3>
             <ul>
               <li><span data-en="Latvian — Native" data-lv="Latviešu — Dzimtā">Latvian — Native</span></li>
               <li><span data-en="English — Advanced" data-lv="Angļu — Augstākais līmenis">English — Advanced</span></li>
@@ -344,50 +540,97 @@
   </main>
 </div>
 
+<button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
+
 <script>
   var worksOpen = false;
   var cvOpen = false;
+  var worksVisited = false;
 
   function hideAll() {
-    document.getElementById('home').style.display = 'none';
-    document.getElementById('photography').style.display = 'none';
-    document.getElementById('tattoo').style.display = 'none';
-    document.getElementById('texts').style.display = 'none';
-    document.getElementById('about').style.display = 'none';
-    document.getElementById('contact').style.display = 'none';
+    ['home','works-grid','photography','tattoo','graphic','texts','about','contact'].forEach(function(id) {
+      document.getElementById(id).style.display = 'none';
+    });
+    clearActive();
+  }
+
+  function clearActive() {
+    document.querySelectorAll('.menu-title, .submenu-item').forEach(function(el) {
+      el.classList.remove('active');
+    });
   }
 
   function showHome() {
     hideAll();
     document.getElementById('home').style.display = 'flex';
-    document.getElementById('photo-item').classList.remove('active');
+    worksOpen = false;
+    worksVisited = false;
+    document.getElementById('works-sub').classList.remove('open');
+    document.getElementById('photo-sub').classList.remove('open');
   }
 
-  function toggleWorks() {
-    worksOpen = !worksOpen;
-    document.getElementById('works-sub').classList.toggle('open', worksOpen);
-    showHome();
+  function handleWorksClick() {
+    if (!worksVisited) {
+      worksOpen = true;
+      worksVisited = true;
+      document.getElementById('works-sub').classList.add('open');
+      showGrid();
+    } else {
+      worksOpen = !worksOpen;
+      document.getElementById('works-sub').classList.toggle('open', worksOpen);
+      if (!worksOpen) { worksVisited = false; showHome(); }
+      else { showGrid(); }
+    }
+    document.getElementById('works-title').classList.toggle('active', worksOpen);
+  }
+
+  function showGrid() {
+    hideAll();
+    document.getElementById('works-grid').style.display = 'block';
+    document.getElementById('works-sub').classList.add('open');
+    document.getElementById('works-title').classList.add('active');
+    worksOpen = true; worksVisited = true;
+    window.scrollTo({ top: 0 });
   }
 
   function showPhotography() {
     hideAll();
     document.getElementById('photography').style.display = 'block';
     document.getElementById('photo-sub').classList.add('open');
+    document.getElementById('works-sub').classList.add('open');
     document.getElementById('photo-item').classList.add('active');
+    document.getElementById('works-title').classList.add('active');
+    worksOpen = true; worksVisited = true;
     window.scrollTo({ top: 0 });
   }
 
   function showTattoo() {
     hideAll();
     document.getElementById('tattoo').style.display = 'block';
-    document.getElementById('photo-item').classList.remove('active');
+    document.getElementById('works-sub').classList.add('open');
+    document.getElementById('tattoo-item').classList.add('active');
+    document.getElementById('works-title').classList.add('active');
+    worksOpen = true; worksVisited = true;
+    window.scrollTo({ top: 0 });
+  }
+
+  function showGraphic() {
+    hideAll();
+    document.getElementById('graphic').style.display = 'block';
+    document.getElementById('works-sub').classList.add('open');
+    document.getElementById('graphic-item').classList.add('active');
+    document.getElementById('works-title').classList.add('active');
+    worksOpen = true; worksVisited = true;
     window.scrollTo({ top: 0 });
   }
 
   function showTexts() {
     hideAll();
     document.getElementById('texts').style.display = 'block';
-    document.getElementById('photo-item').classList.remove('active');
+    document.getElementById('works-sub').classList.add('open');
+    document.getElementById('texts-item').classList.add('active');
+    document.getElementById('works-title').classList.add('active');
+    worksOpen = true; worksVisited = true;
     window.scrollTo({ top: 0 });
   }
 
@@ -402,14 +645,14 @@
   function showAbout() {
     hideAll();
     document.getElementById('about').style.display = 'block';
-    document.getElementById('photo-item').classList.remove('active');
+    document.getElementById('about-title').classList.add('active');
     window.scrollTo({ top: 0 });
   }
 
   function showContact() {
     hideAll();
     document.getElementById('contact').style.display = 'block';
-    document.getElementById('photo-item').classList.remove('active');
+    document.getElementById('contact-title').classList.add('active');
     window.scrollTo({ top: 0 });
   }
 
@@ -426,6 +669,20 @@
       el.innerHTML = lang === 'lv' ? el.getAttribute('data-lv') : el.getAttribute('data-en');
     });
   }
+
+  function toggleMobileMenu() {
+    document.getElementById('main-menu').classList.toggle('open');
+    document.getElementById('menu-overlay').classList.toggle('open');
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('main-menu').classList.remove('open');
+    document.getElementById('menu-overlay').classList.remove('open');
+  }
+
+  window.addEventListener('scroll', function() {
+    document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
+  });
 </script>
 
 </body>
