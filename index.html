@@ -94,15 +94,17 @@
       </div>
     </div>
 
-    <div class="menu-section">
-      <div class="menu-title" id="about-title" onclick="showPageNoWorks('about'); closeMobileMenu()">
-        <span data-en="About" data-lv="Par mani">About</span>
+<div class="menu-bottom">
+      <div class="menu-section">
+        <div class="menu-title" id="about-title" onclick="showPageNoWorks('about'); closeMobileMenu()">
+          <span data-en="About" data-lv="Par mani">About</span>
+        </div>
       </div>
-    </div>
 
-    <div class="menu-section">
-      <div class="menu-title" id="contact-title" onclick="showPageNoWorks('contact'); closeMobileMenu()">
-        <span data-en="Contact" data-lv="Kontakti">Contact</span>
+      <div class="menu-section">
+        <div class="menu-title" id="contact-title" onclick="showPageNoWorks('contact'); closeMobileMenu()">
+          <span data-en="Contact" data-lv="Kontakti">Contact</span>
+        </div>
       </div>
     </div>
   </nav>
@@ -121,7 +123,7 @@
   <div id="home">
   <h1 onclick="showHome()" style="cursor:pointer;">Estere Artmane</h1>
   <p class="tagline" onclick="showPageNoWorks('about')" style="cursor:pointer;">
-    Multidisciplinary visual artist based in Latvia, exploring perception and image-making across digital and physical media.
+   Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.
   </p>
   <video id="home-video" src="videos/Estere_2.mp4" muted loop playsinline class="home-video" onclick="goToProject('movingimage','whitenoise')" style="cursor:pointer;"></video>
 
@@ -386,20 +388,6 @@
     <div id="movingimage" class="page">
       <h1 class="page-title">Moving Image</h1>
 
-      <div class="project-section" id="whitenoise">
-        <p class="project-label">White Noise</p>
-        <p class="project-desc">An image-by-image close-up using repetition and duration to evoke a moment of pause and introspection, similar to the mental state one can experience during a shower. The work reflects on how one gradually lets go of external stimuli, entering a focused, almost meditative state.</p>
-        <video id="full-video" src="videos/Estere_2.mp4" controls class="full-video"></video>
-      </div>
-      <div class="project-divider"></div>
-
-      <div class="project-section" id="stopmotion">
-        <p class="project-label">Stop-Motion Animation</p>
-        <p class="project-desc">A stop-motion animation telling a playful story about a character who cannot decide what to watch on TV. The project was also an experiment in lighting, set design, camera work, and editing, allowing exploration of narrative through controlled visual construction.</p>
-        <video id="stopmotion-video" src="videos/ESTERE_artmane_VKN.mp4" controls class="full-video"></video>
-      </div>
-      <div class="project-divider"></div>
-
       <div class="project-section" id="gifhead">
         <p class="project-label">GIF Trilogy — Head</p>
         <p class="project-desc">Three animated works exploring the face as subject — expression, stillness, and noise.</p>
@@ -424,6 +412,23 @@
           </div>
         </div>
       </div>
+      <div class="project-divider"></div>
+
+      <div class="project-section" id="whitenoise">
+        <p class="project-label">White Noise</p>
+        <p class="project-desc">An image-by-image close-up using repetition and duration to evoke a moment of pause and introspection, similar to the mental state one can experience during a shower. The work reflects on how one gradually lets go of external stimuli, entering a focused, almost meditative state.</p>
+        <video id="full-video" src="videos/Estere_2.mp4" controls class="full-video"></video>
+      </div>
+      <div class="project-divider"></div>
+
+      <div class="project-section" id="stopmotion">
+        <p class="project-label">Stop-Motion Animation</p>
+        <p class="project-desc">A stop-motion animation telling a playful story about a character who cannot decide what to watch on TV. The project was also an experiment in lighting, set design, camera work, and editing, allowing exploration of narrative through controlled visual construction.</p>
+        <video id="stopmotion-video" src="videos/ESTERE_artmane_VKN.mp4" controls class="full-video"></video>
+      </div>
+      <div class="project-divider"></div>
+
+
     </div>
 
     <!-- INTERACTIVE -->
@@ -811,8 +816,8 @@ function showHome() {
       }
     }
   }
-function toggleSection(pageId) {
-    if (pageId !== 'contemporary') stopBirdAudio();
+
+  function toggleSection(pageId) {
     if (currentPage === 'interactive' && pageId !== 'interactive') stopYoutube();
     var subId = subMenuMap[pageId];
     if (currentPage === pageId) {
@@ -850,13 +855,17 @@ function toggleSection(pageId) {
 function showPageNoWorks(pageId) {
     stopBirdAudio();
     if (currentPage === 'interactive') stopYoutube();
-
     hideAllPages();
     var el = document.getElementById(pageId);
     if (el) el.style.display = 'block';
     currentPage = pageId;
     window.scrollTo({ top: 0 });
     clearActive();
+    // close works submenu
+    worksOpen = false;
+    worksVisited = false;
+    document.getElementById('works-sub').classList.remove('open');
+    closeAllSubMenus();
     var titleEl = document.getElementById(pageId + '-title');
     if (titleEl) titleEl.classList.add('active');
     closeMobileMenu();
@@ -937,11 +946,18 @@ function showPageNoWorks(pageId) {
 
 <script>
 window.addEventListener("scroll", function() {
+
+  const home = document.getElementById("home");
+
+  // only run if the home page is visible
+  if (!home || home.style.display === "none") return;
+
   if (window.scrollY > 80) {
     document.body.classList.add("scrolled");
   } else {
     document.body.classList.remove("scrolled");
   }
+
 });
 </script>
 

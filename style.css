@@ -33,7 +33,6 @@ body {
   right: calc(50% - 600px - 80px);
   z-index: 200;
 }
-
 .lang-btn { font-size: 12px; letter-spacing: 0.08em; color: #aaa; cursor: pointer; transition: color 0.15s; }
 .lang-btn:hover { color: #0000ee; }
 .lang-btn.active { color: #111; }
@@ -101,34 +100,32 @@ body {
   position: relative;
 }
 
-.grid-clip {
-  max-height: calc((820px / 10) * 2 + 2px);
-  overflow: hidden;
-  transition: max-height 1s ease;
-  position: relative;
-}
 
-body.scrolled .grid-clip,
-body:not(.home-active) .grid-clip {
-  max-height: none;
-}
-
-.grid-clip::after {
+.home-grid-section::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 90px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 100%);
+  height: 120px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
   pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-  z-index: 2;
+  transition: opacity 0.4s;
 }
 
-body.scrolled .grid-clip::after {
+body.scrolled .home-grid-section::after {
   opacity: 0;
+}
+
+.home-grid-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), #fff);
+  pointer-events: none;
 }
 
 /* GRID */
