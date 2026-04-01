@@ -54,9 +54,9 @@
           <span data-en="moving image" data-lv="kustīgais attēls">moving image</span>
         </div>
         <div class="project-links" id="movingimage-sub">
+          <div class="project-link" id="link-gifhead" onclick="goToProject('movingimage','gifhead')">gif trilogy — head</div>
           <div class="project-link" id="link-whitenoise" onclick="goToProject('movingimage','whitenoise')">white noise</div>
           <div class="project-link" id="link-stopmotion" onclick="goToProject('movingimage','stopmotion')">stop-motion</div>
-          <div class="project-link" id="link-gifhead" onclick="goToProject('movingimage','gifhead')">gif trilogy — head</div>
         </div>
 
         <div class="submenu-item" id="interactive-item" onclick="toggleSection('interactive'); closeMobileMenu()">
@@ -94,13 +94,13 @@
       </div>
     </div>
 
-<div class="menu-bottom">
+    <!-- About and Contact sit in their own sections directly after Works, no extra margin -->
+    <div class="menu-bottom">
       <div class="menu-section">
         <div class="menu-title" id="about-title" onclick="showPageNoWorks('about'); closeMobileMenu()">
           <span data-en="About" data-lv="Par mani">About</span>
         </div>
       </div>
-
       <div class="menu-section">
         <div class="menu-title" id="contact-title" onclick="showPageNoWorks('contact'); closeMobileMenu()">
           <span data-en="Contact" data-lv="Kontakti">Contact</span>
@@ -120,81 +120,40 @@
   <main class="content">
 
     <!-- HOME -->
-  <div id="home">
-  <h1 onclick="showHome()" style="cursor:pointer;">Estere Artmane</h1>
-  <p class="tagline" onclick="showPageNoWorks('about')" style="cursor:pointer;">
-   Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.
-  </p>
-  <video id="home-video" src="videos/Estere_2.mp4" muted loop playsinline class="home-video" onclick="goToProject('movingimage','whitenoise')" style="cursor:pointer;"></video>
+    <div id="home">
+      <!-- Swirl decorations -->
+      <img src="images/swirls.png" class="home-swirl left" alt="">
+      <img src="images/swirls.png" class="home-swirl right" alt="">
 
-<div class="home-grid-section" id="home-grid">
-    <div class="grid-clip">
-    <div class="works-grid">
+      <h1 onclick="showHome()">Estere Artmane</h1>
+      <p class="tagline" onclick="showPageNoWorks('about')">
+        Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.
+      </p>
 
-      <!-- ROW 1 — two moving works + photography -->
-      <div class="grid-item" onclick="goToProject('movingimage','whitenoise')"><video src="videos/Estere_2.mp4" muted loop playsinline class="grid-video"></video><div class="grid-label">white noise</div></div>
-      <div class="grid-item" onclick="goToProject('movingimage','stopmotion')"><video src="videos/ESTERE_artmane_VKN.mp4" muted playsinline class="grid-video"></video><div class="grid-label">stop-motion</div></div>
-      <div class="grid-item" onclick="goToProject('photography','illuminations')"><img src="images/IMG_2566.JPG" alt=""><div class="grid-label">illuminations</div></div>
-      <div class="grid-item" onclick="goToProject('photography','notes')"><img src="images/foto_2.jpg" alt=""><div class="grid-label">notes</div></div>
-      <div class="grid-item" onclick="goToProject('photography','green')"><img src="images/IMG_9719.jpg" alt=""><div class="grid-label">green</div></div>
-      <div class="grid-item" onclick="goToProject('photography','isaw')"><img src="images/IMG_8347.jpg" alt=""><div class="grid-label">i saw</div></div>
-      <div class="grid-item" onclick="goToProject('photography','zresidency')"><img src="images/IMG_1628_VSCO.jpg" alt=""><div class="grid-label">ziedonis residency</div></div>
-      <div class="grid-item" onclick="goToProject('photography','photostory')"><img src="images/DSC_0053.jpg" alt=""><div class="grid-label">photo story</div></div>
-      <div class="grid-item" onclick="goToProject('photography','photostory2')"><img src="images/DSC_0114.jpg" alt=""><div class="grid-label">photo story 2</div></div>
-      <div class="grid-item" onclick="goToProject('photography','analogbw')"><img src="images/IMG_6426.jpg" alt=""><div class="grid-label">analog b&w</div></div>
+      <!-- Slideshow rectangle replacing the video -->
+      <div class="home-slideshow-wrap">
+        <div class="home-slideshow-frame" id="home-slideshow">
+          <div class="home-slide active" id="slide-0">
+            <video id="home-video" src="videos/Estere_2.mp4" muted loop playsinline></video>
+          </div>
+          <!-- Add more slides here as needed, e.g.:
+          <div class="home-slide" id="slide-1">
+            <img src="images/YOUR_IMAGE.jpg" alt="">
+          </div>
+          -->
+        </div>
+        <div class="home-dots" id="home-dots">
+          <div class="home-dot active" onclick="goToSlide(0)"></div>
+          <!-- Add more dots when you add more slides -->
+        </div>
+      </div>
 
-      <!-- ROW 2 -->
-      <div class="grid-item" onclick="goToProject('photography','analogbw')"><img src="images/IMG_6432.JPG" alt=""><div class="grid-label">analog b&w</div></div>
-      <div class="grid-item" onclick="goToProject('photography','studio')"><img src="images/portrets_8bit.jpg" alt=""><div class="grid-label">studio</div></div>
-      <div class="grid-item" onclick="goToProject('photography','studio')"><img src="images/IMG_5737_8bit_mazakkontrastskurpes.jpg" alt=""><div class="grid-label">studio</div></div>
-      <div class="grid-item" onclick="goToProject('photography','analogcolor')"><img src="images/APDQ8368.PNG" alt=""><div class="grid-label">analog color</div></div>
-      <div class="grid-item" onclick="goToProject('photography','analogcolor')"><img src="images/GBHI4458.PNG" alt=""><div class="grid-label">analog color</div></div>
-      <div class="grid-item" onclick="goToProject('photography','illuminations')"><img src="images/IMG_2577.JPG" alt=""><div class="grid-label">illuminations</div></div>
-      <div class="grid-item" onclick="goToProject('photography','notes')"><img src="images/foto_1.jpg" alt=""><div class="grid-label">notes</div></div>
-      <div class="grid-item" onclick="goToProject('photography','green')"><img src="images/IMG_9742.jpg" alt=""><div class="grid-label">green</div></div>
-      <div class="grid-item" onclick="goToProject('photography','isaw')"><img src="images/IMG_8352.jpg" alt=""><div class="grid-label">i saw</div></div>
-      <div class="grid-item" onclick="goToProject('photography','zresidency')"><img src="images/IMG_1635_VSCO.jpg" alt=""><div class="grid-label">ziedonis residency</div></div>
-
-      <!-- ROW 3 -->
-      <div class="grid-item" onclick="goToProject('graphic','graffiti')"><img src="images/Untitled21.jpg" alt=""><div class="grid-label">graffiti on skin</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','graffiti')"><img src="images/Untitled-1.jpg" alt=""><div class="grid-label">graffiti on skin</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','screenprint')"><img src="images/screenprint.jpg" alt=""><div class="grid-label">screen print</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','tshirt')"><img src="images/cv_new-04.png" alt=""><div class="grid-label">t-shirt</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','zine')"><img src="images/cv_new-05.png" alt=""><div class="grid-label">zine for remi</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','zine')"><img src="images/cv_new-06.png" alt=""><div class="grid-label">zine for remi</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','laivu')"><img src="images/estere_artmane_laivubrauciens.png" alt=""><div class="grid-label">laivu brauciens</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','ziedonis')"><img src="images/kafija1.jpg" alt=""><div class="grid-label">ziedonis museum</div></div>
-      <div class="grid-item" onclick="goToProject('graphic','ziedonis')"><img src="images/kafija2.png" alt=""><div class="grid-label">ziedonis museum</div></div>
-      <div class="grid-item" onclick="goToProject('movingimage','gifhead')"><img src="images/500_1gifs.gif" alt=""><div class="grid-label">gif 1</div></div>
-
-      <!-- ROW 4 -->
-      <div class="grid-item" onclick="goToProject('movingimage','gifhead')"><img src="images/500_zimetais.gif" alt=""><div class="grid-label">gif 2</div></div>
-      <div class="grid-item" onclick="goToProject('movingimage','gifhead')"><img src="images/500_garlaiciba.gif" alt=""><div class="grid-label">gif 3</div></div>
-      <div class="grid-item" onclick="goToProject('interactive','video360')"><div class="grid-placeholder">360°</div><div class="grid-label">360 eyes</div></div>
-      <div class="grid-item" onclick="goToProject('contemporary','bird')"><img src="images/bird_1.jpg" alt=""><div class="grid-label">bird</div></div>
-      <div class="grid-item" onclick="goToProject('contemporary','bird')"><img src="images/bird_2.jpg" alt=""><div class="grid-label">bird</div></div>
-      <div class="grid-item" onclick="goToProject('contemporary','bird')"><img src="images/bird_3.jpg" alt=""><div class="grid-label">bird</div></div>
-      <div class="grid-item" onclick="goToProject('contemporary','selfportrait')"><img src="images/IMG_4164.jpg" alt=""><div class="grid-label">self-portrait</div></div>
-      <div class="grid-item" onclick="showPage('curation')"><img src="images/Shake_Down_Cesis_Photo_Liene_Leonovica-11.jpg" alt=""><div class="grid-label">curation</div></div>
-      <div class="grid-item" onclick="showPage('curation')"><img src="images/STR8619.jpg" alt=""><div class="grid-label">curation</div></div>
-      <div class="grid-item" onclick="showPage('curation')"><img src="images/STR8644.jpg" alt=""><div class="grid-label">curation</div></div>
-
-      <!-- ROW 5 -->
-      <div class="grid-item" onclick="showPage('tattoo')"><img src="images/cv_new-02.png" alt=""><div class="grid-label">tattoo</div></div>
-      <div class="grid-item" onclick="goToProject('textpage','satori')"><img src="images/Untitled-1.jpg" alt=""><div class="grid-label">text</div></div>
-      <div class="grid-item" onclick="goToProject('photography','photostory')"><img src="images/DSC_0105.jpg" alt=""><div class="grid-label">photo story</div></div>
-      <div class="grid-item" onclick="goToProject('photography','photostory2')"><img src="images/FullSizeRender.jpg" alt=""><div class="grid-label">photo story 2</div></div>
-      <div class="grid-item" onclick="goToProject('photography','zresidency')"><img src="images/IMG_1646_VSCO.jpg" alt=""><div class="grid-label">ziedonis residency</div></div>
-      <div class="grid-item" onclick="goToProject('photography','zresidency')"><img src="images/IMG_1648_VSCO.jpg" alt=""><div class="grid-label">ziedonis residency</div></div>
-      <div class="grid-item" onclick="goToProject('photography','analogcolor')"><img src="images/HLHE0442.PNG" alt=""><div class="grid-label">analog color</div></div>
-      <div class="grid-item" onclick="goToProject('photography','analogcolor')"><img src="images/XRTL1267.PNG" alt=""><div class="grid-label">analog color</div></div>
-      <div class="grid-item" onclick="goToProject('contemporary','bird')"><img src="images/bird_4.jpg" alt=""><div class="grid-label">bird</div></div>
-      <div class="grid-item" onclick="goToProject('contemporary','bird')"><img src="images/bird_5.jpg" alt=""><div class="grid-label">bird</div></div>
-
+      <!-- Bazuka circular image -->
+   <a href="https://www.instagram.com/bazukabazyka/" target="_blank" class="home-bazuka">
+  <img src="images/bazuka.png" alt="Instagram">
+</a>
     </div>
-    </div>
-  </div>
-</div>
+
     <!-- PHOTOGRAPHY -->
     <div id="photography" class="page">
       <h1 class="page-title">Photography</h1>
@@ -209,7 +168,7 @@
             <img src="images/IMG_2593.JPG" alt="">
           </div>
         </div>
-        <img src="images/vahi.jpg" alt="" style="max-width:700px; display:block; margin:6px auto 0 auto;">
+        <img src="images/vahi.jpg" alt="" style="max-width:700px;display:block;margin:6px auto 0 auto;">
       </div>
       <div class="project-divider"></div>
 
@@ -279,9 +238,11 @@
       <div class="project-section" id="photostory2">
         <p class="project-label">Photo Story 2</p>
         <p class="project-desc">A continuation — three more images that explore the space between documentation and fiction.</p>
-        <img src="images/DSC_0114.jpg" alt="">
-        <img src="images/FullSizeRender.jpg" alt="">
-        <img src="images/IMG_1333.jpg" alt="">
+        <div class="photostory-layout">
+          <img src="images/DSC_0114.jpg" alt="">
+          <img src="images/FullSizeRender.jpg" alt="">
+          <img src="images/IMG_1333.jpg" alt="">
+        </div>
       </div>
       <div class="project-divider"></div>
 
@@ -426,9 +387,6 @@
         <p class="project-desc">A stop-motion animation telling a playful story about a character who cannot decide what to watch on TV. The project was also an experiment in lighting, set design, camera work, and editing, allowing exploration of narrative through controlled visual construction.</p>
         <video id="stopmotion-video" src="videos/ESTERE_artmane_VKN.mp4" controls class="full-video"></video>
       </div>
-      <div class="project-divider"></div>
-
-
     </div>
 
     <!-- INTERACTIVE -->
@@ -452,14 +410,13 @@
         <p class="project-desc">This project explores the obsession with conspiracy theories and their ability to construct alternate realities. Centered on the idea that birds are surveillance drones, the work features an investigative board filled with cutouts, news clippings, images, and reels collected over days, forming a chaotic web of "evidence." <span class="audio-highlight" onclick="toggleBirdAudio()">Accompanying audio plays from behind the wall</span>, built from clips of a conspiracy theorist's YouTube videos, with words rearranged into sentences that are both humorous and unsettling, revealing the twisted logic behind the obsession. On a personal level, the work reflects my childhood, growing up in a household shaped by conspiracy theories, and the way these ideas quietly shaped my perspective on the world.</p>
         <audio id="bird-audio" src="videos/skanja.mp4" loop></audio>
         <p class="bird-audio-hint">↑ click the highlighted text above to play / stop the audio</p>
-
         <div class="image-grid-2col">
           <img src="images/bird_1.jpg" alt="">
           <img src="images/bird_2.jpg" alt="">
           <img src="images/bird_3.jpg" alt="">
           <img src="images/bird_4.jpg" alt="">
         </div>
-        <img src="images/bird_5.jpg" alt="" style="max-width:500px; display:block; margin:6px auto 0 auto;">
+        <img src="images/bird_5.jpg" alt="" style="max-width:500px;display:block;margin:6px auto 0 auto;">
         <div class="printed-sheet" style="margin-top:40px;">
           <p class="printed-lang">ENG</p>
           <p>Discovering the truth in a world full of lies<br>
@@ -505,7 +462,8 @@
       </div>
     </div>
 
-       <div id="curation" class="page">
+    <!-- CURATION -->
+    <div id="curation" class="page">
       <h1 class="page-title">Curation</h1>
       <div class="project-section">
         <p class="project-label">The Shake Down</p>
@@ -528,12 +486,15 @@
     <!-- TATTOO -->
     <div id="tattoo" class="page">
       <h1 class="page-title">Tattoo</h1>
-      <p class="project-desc" style="text-align:center; margin-bottom:40px;">Handpoke tattoo work.</p>
+      <p class="project-desc" style="text-align:center;margin-bottom:40px;">Handpoke tattoo work.</p>
       <div class="tattoo-embeds">
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DP1Gh9fDLl5/" data-instgrm-version="14" style="max-width:400px; width:100%; margin:0 auto;"></blockquote>
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C22JQ75CjGj/" data-instgrm-version="14" style="max-width:400px; width:100%; margin:0 auto;"></blockquote>
-        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVtOlkujKlI/" data-instgrm-version="14" style="max-width:400px; width:100%; margin:0 auto;"></blockquote>
-      </div>
+  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DP1Gh9fDLl5/" data-instgrm-version="14" style="max-width:400px;width:100%;margin:0 auto;"></blockquote>
+  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/C22JQ75CjGj/" data-instgrm-version="14" style="max-width:400px;width:100%;margin:0 auto;"></blockquote>
+  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVtOlkujKlI/" data-instgrm-version="14" style="max-width:400px;width:100%;margin:0 auto;"></blockquote>
+  
+  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWgh5xljJFc/" data-instgrm-version="14" style="max-width:400px;width:100%;margin:0 auto;"></blockquote>
+  <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DRmZcfPDOJb/" data-instgrm-version="14" style="max-width:400px;width:100%;margin:0 auto;"></blockquote>
+</div>
       <script async src="//www.instagram.com/embed.js"></script>
     </div>
 
@@ -656,16 +617,34 @@
   </main>
 </div>
 
+<footer class="site-footer">
+  <p>© Estere Artmane 2026</p>
+</footer>
+
 <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
 <div class="toast" id="toast">email copied</div>
 
 <script>
-var worksOpen = false;
+  var worksOpen = false;
   var worksVisited = false;
   var cvOpen = false;
   var currentPage = '';
   var soundOn = false;
   var birdAudioPlaying = false;
+
+  // Slideshow
+  var currentSlide = 0;
+  var totalSlides = document.querySelectorAll('.home-slide').length;
+
+  function goToSlide(n) {
+    var slides = document.querySelectorAll('.home-slide');
+    var dots = document.querySelectorAll('.home-dot');
+    slides.forEach(function(s) { s.classList.remove('active'); });
+    dots.forEach(function(d) { d.classList.remove('active'); });
+    if (slides[n]) slides[n].classList.add('active');
+    if (dots[n]) dots[n].classList.add('active');
+    currentSlide = n;
+  }
 
   function toggleBirdAudio() {
     var audio = document.getElementById('bird-audio');
@@ -711,24 +690,10 @@ var worksOpen = false;
     var v = document.getElementById('home-video');
     if (!v) return;
     v.currentTime = 1;
-    v.muted = !soundOn;
+    v.muted = true;
     v.play();
     v.addEventListener('timeupdate', function() {
       if (v.currentTime >= 16) v.currentTime = 1;
-    });
-  }
-
-  function toggleSound() {
-    soundOn = !soundOn;
-    var v = document.getElementById('home-video');
-    if (v) v.muted = !soundOn;
-    document.getElementById('sound-icon').textContent = soundOn ? '♫' : '♪';
-  }
-
-  function playGridVideos() {
-    document.querySelectorAll('.grid-video').forEach(function(v) {
-      v.currentTime = 0;
-      v.play();
     });
   }
 
@@ -739,7 +704,6 @@ var worksOpen = false;
 
   window.addEventListener('load', function() {
     initHomeVideo();
-    playGridVideos();
   });
 
   function hideAllPages() {
@@ -762,7 +726,7 @@ var worksOpen = false;
     });
   }
 
-function showHome() {
+  function showHome() {
     stopBirdAudio();
     stopYoutube();
     hideAllPages();
@@ -774,50 +738,30 @@ function showHome() {
     closeAllSubMenus();
     clearActive();
     initHomeVideo();
-    playGridVideos();
   }
 
-  function handleWorksClick() {
+ function handleWorksClick() {
     if (!worksVisited) {
       worksOpen = true;
       worksVisited = true;
       document.getElementById('works-sub').classList.add('open');
       document.getElementById('works-title').classList.add('active');
-      if (currentPage !== '') {
-        hideAllPages();
-        document.getElementById('home').style.display = 'flex';
-        currentPage = '';
-        initHomeVideo();
-        playGridVideos();
-      }
-      setTimeout(function() {
-        var grid = document.getElementById('home-grid');
-        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
+      
+      // Automatically opens photography on first click
+      toggleSection('photography');
     } else {
-      worksOpen = !worksOpen;
-      document.getElementById('works-sub').classList.toggle('open', worksOpen);
-      document.getElementById('works-title').classList.toggle('active', worksOpen);
-      if (!worksOpen) {
-        worksVisited = false;
-        showHome();
-      } else {
-        if (currentPage !== '') {
-          hideAllPages();
-          document.getElementById('home').style.display = 'flex';
-          currentPage = '';
-          initHomeVideo();
-          playGridVideos();
-        }
-        setTimeout(function() {
-          var grid = document.getElementById('home-grid');
-          if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 80);
-      }
+      // Closes menu and returns to Home on second click
+      worksOpen = false;
+      worksVisited = false;
+      document.getElementById('works-sub').classList.remove('open');
+      document.getElementById('works-title').classList.remove('active');
+      closeAllSubMenus();
+      showHome();
     }
   }
 
   function toggleSection(pageId) {
+    if (pageId !== 'contemporary') stopBirdAudio();
     if (currentPage === 'interactive' && pageId !== 'interactive') stopYoutube();
     var subId = subMenuMap[pageId];
     if (currentPage === pageId) {
@@ -838,21 +782,15 @@ function showHome() {
     document.getElementById('works-sub').classList.add('open');
     var itemEl = document.getElementById(menuItemMap[pageId]);
     if (itemEl) itemEl.classList.add('active');
-    if (pageId === 'movingimage') {
-      var sm = document.getElementById('stopmotion-video');
-      if (sm) sm.loop = false;
-    }
     if (pageId === 'tattoo') {
       if (window.instgrm) window.instgrm.Embeds.process();
     }
     closeMobileMenu();
   }
 
-  function showPage(pageId) {
-    toggleSection(pageId);
-  }
+  function showPage(pageId) { toggleSection(pageId); }
 
-function showPageNoWorks(pageId) {
+  function showPageNoWorks(pageId) {
     stopBirdAudio();
     if (currentPage === 'interactive') stopYoutube();
     hideAllPages();
@@ -861,7 +799,6 @@ function showPageNoWorks(pageId) {
     currentPage = pageId;
     window.scrollTo({ top: 0 });
     clearActive();
-    // close works submenu
     worksOpen = false;
     worksVisited = false;
     document.getElementById('works-sub').classList.remove('open');
@@ -888,6 +825,7 @@ function showPageNoWorks(pageId) {
 
   function goToProject(pageId, sectionId) {
     if (currentPage === 'interactive' && pageId !== 'interactive') stopYoutube();
+    if (pageId !== 'contemporary') stopBirdAudio();
     if (currentPage === pageId) {
       clearProjectLinks(pageId);
       var lnk = document.getElementById('link-' + sectionId);
@@ -940,25 +878,6 @@ function showPageNoWorks(pageId) {
   window.addEventListener('scroll', function() {
     document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
   });
-</script>
-
-
-
-<script>
-window.addEventListener("scroll", function() {
-
-  const home = document.getElementById("home");
-
-  // only run if the home page is visible
-  if (!home || home.style.display === "none") return;
-
-  if (window.scrollY > 80) {
-    document.body.classList.add("scrolled");
-  } else {
-    document.body.classList.remove("scrolled");
-  }
-
-});
 </script>
 
 </body>
