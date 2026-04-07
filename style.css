@@ -517,11 +517,4 @@ body {
   .notebook-arrow.left { left: 5px; }
   .notebook-arrow.right { right: 5px; }
 }
-
-.mobile-gif-home { display: none; }
-
-@media (max-width: 900px) {
-  #desktop-notebook { display: none; }
-  .mobile-gif-home { display: block; width: 80%; margin: 0 auto; }
-  .mobile-gif-home img { width: 100%; height: auto; display: block; }
 }
