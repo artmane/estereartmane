@@ -417,12 +417,12 @@ body {
   
   #home h1 { font-size: 28px; } /* Slightly smaller main heading */
 
-  #home .tagline {
-    font-size: 14px; /* Essential! Makes the font smaller so it fits */
-    max-width: 290px; /* Essential! Fixes that single-word-line issue */
-    line-height: 1.5; /* Good line space */
-    margin: 0 auto 20px auto; /* Centers it and gives bottom space */
-    text-transform: none; /* Sentence case, not caps */
+ #home .tagline {
+    font-size: 14px;
+    max-width: 380px;
+    line-height: 1.5;
+    margin: 0 auto 20px auto;
+    text-transform: none;
   }
 }
 
@@ -466,8 +466,9 @@ body {
 /* 3D OPEN BOOK STYLES */
 .book-container {
   width: 100%;
-  max-width: 600px; /* Adjust this to fit your images */
-  height: 400px;    /* Adjust this to fit your images */
+  max-width: 600px;
+  height: auto;
+  aspect-ratio: 1.5 / 1;
   margin: 0 auto;
   position: relative;
   perspective: 1500px;
