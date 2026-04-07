@@ -409,12 +409,23 @@ body {
   
   #home h1 { font-size: 28px; } /* Slightly smaller main heading */
 
-  #home .tagline {
-    font-size: 14px; /* Essential! Makes the font smaller so it fits */
-    max-width: 290px; /* Essential! Fixes that single-word-line issue */
-    line-height: 1.5; /* Good line space */
-    margin: 0 auto 20px auto; /* Centers it and gives bottom space */
-    text-transform: none; /* Sentence case, not caps */
+#home .tagline {
+    font-size: 14px;
+    max-width: 320px; /* Slightly wider for better line breaks */
+    line-height: 1.5;
+    margin: 0 auto 20px auto;
+    text-transform: none;
+  }
+
+  /* FIX: This makes the notebook fit perfectly on the phone screen */
+  .home-slideshow-wrap {
+    max-width: 85%; /* Shrinks the book container */
+    margin: 20px auto 0 auto;
+  }
+
+  .home-slideshow-frame {
+    aspect-ratio: 1.4 / 1; /* Keeps the rectangular notebook shape */
+    height: auto; 
   }
 }
 
