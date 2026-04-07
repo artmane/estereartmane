@@ -126,9 +126,9 @@
       <img src="images/swirls.png" class="home-swirl right" alt="">
 
       <h1 onclick="showHome()">Estere Artmane</h1>
-      <p class="tagline" onclick="showPageNoWorks('about')">
-        Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.
-      </p>
+     <p class="tagline" onclick="showPageNoWorks('about')">
+  <span data-en="Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media." data-lv="Multidiciplināra vizuālā māksliniece bāzēta Latvijā,<br>pētot uztveri un tēlu veidošanu pāri<br>digitālajiem un fiziskajiem medijiem.">Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.</span>
+</p>
 
       <!-- Slideshow rectangle replacing the video -->
      <div class="home-slideshow-wrap">
@@ -861,14 +861,21 @@ function changeSpread(n) {
     });
   }
 
-  function setLang(lang) {
+ function setLang(lang) {
     document.getElementById('lang-en').classList.toggle('active', lang === 'en');
     document.getElementById('lang-lv').classList.toggle('active', lang === 'lv');
+    
+    // Updates all regular menu items (data-en/data-lv)
     document.querySelectorAll('[data-en]').forEach(function(el) {
       el.innerHTML = lang === 'lv' ? el.getAttribute('data-lv') : el.getAttribute('data-en');
     });
+    
+    // Simple fix to update the home tagline manually, as the nested structure makes data-attributes tricky
+    const taglineLV = "Daudzdisciplināra vizuālā māksliniece no Latvijas,<br>kura savā praksē pēta uztveri un attēlu veidošanu<br>digitālos un fiziskos medijos";
+    const taglineEN = "Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.";
+    
+    document.querySelector('.tagline span').innerHTML = (lang === 'lv') ? taglineLV : taglineEN;
   }
-
   function toggleMobileMenu() {
     document.getElementById('main-menu').classList.toggle('open');
     document.getElementById('menu-overlay').classList.toggle('open');
