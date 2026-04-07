@@ -871,8 +871,8 @@ function changeSpread(n) {
     });
     
     // Simple fix to update the home tagline manually, as the nested structure makes data-attributes tricky
-    const taglineLV = "Daudzdisciplināra vizuālā māksliniece no Latvijas,<br>kura savā praksē pēta uztveri un attēlu veidošanu<br>digitālos un fiziskos medijos";
-    const taglineEN = "Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.";
+    const taglineLV = "Daudzdisciplināra vizuālā māksliniece no<br>Latvijas, kura savā praksē pēta uztveri<br>un attēlu veidošanu digitālos un fiziskos medijos.";
+    const taglineEN = "Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making<br>across digital and physical media.";
     
     document.querySelector('.tagline span').innerHTML = (lang === 'lv') ? taglineLV : taglineEN;
   }

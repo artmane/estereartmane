@@ -65,20 +65,12 @@ body {
 .submenu.open { display: block; }
 .submenu-item { font-size: 16px; cursor: pointer; padding: 4px 0; transition: color 0.15s; line-height: 1.4; }
 .submenu-item:hover { color: #0000ee; }
-/* Moves the 'strikethrough' ONLY to the specific active project */
-.project-link.active {
-  color: #111;
-  font-weight: 600;
-  text-decoration: line-through; /* This is the three lines effect */
-}
-
-/* This is essential - removes any accidental line effect from the Darbi/Works titles */
-.menu-title.active,
-.submenu-item.active {
-  color: #0000ee;
-  font-weight: 700;
-  text-decoration: none; /* Force no strikethrough */
-}
+.submenu-item.active { font-weight: 700; color: #111; }
+.project-links { display: none; margin-left: 14px; margin-top: 3px; margin-bottom: 4px; }
+.project-links.open { display: block; }
+.project-link { font-size: 16px; color: #888; cursor: pointer; padding: 3px 0; transition: color 0.15s; }
+.project-link:hover { color: #0000ee; }
+.project-link.active { color: #111; font-weight: 600; }
 
 /* menu-bottom: no extra top margin so Works/About/Contact are evenly spaced */
 .menu-bottom { margin-top: 0; }
@@ -417,45 +409,15 @@ body {
   
   #home h1 { font-size: 28px; } /* Slightly smaller main heading */
 
- #home .tagline {
-    font-size: 14px;
-    max-width: 380px;
-    line-height: 1.5;
-    margin: 0 auto 20px auto;
-    text-transform: none;
+  #home .tagline {
+    font-size: 14px; /* Essential! Makes the font smaller so it fits */
+    max-width: 290px; /* Essential! Fixes that single-word-line issue */
+    line-height: 1.5; /* Good line space */
+    margin: 0 auto 20px auto; /* Centers it and gives bottom space */
+    text-transform: none; /* Sentence case, not caps */
   }
 }
 
-/* MOBILE FIXES - MENU OPENED */
-  .menu { 
-    font-family: 'EB Garamond', Georgia, serif; /* Serifs like your block text */
-    text-align: left; /* Left align for menu */
-    padding: 60px 24px; /* More top padding so it doesn't overlap header */
-  }
-  
-  .menu-title {
-    font-size: 20px; /* Makes main titles (Darbi, About) big like image_2.png */
-    color: #111;
-    font-weight: 400; /* Normal weight, not bold */
-    padding: 8px 0; /* More space to click */
-  }
-  
-  .submenu-item {
-    font-size: 18px; /* Slightly smaller than main titles, but big */
-    color: #222;
-    font-weight: 400;
-  }
-  
-  .project-link {
-    font-size: 16px; /* Project links (illuminations) should be standard size */
-    color: #666; /* Grayed out */
-    padding: 6px 0 6px 16px; /* Indent them clearly */
-  }
-
-  .project-link.active {
-    color: #111;
-    font-weight: 600; /* Highlighted */
-  }
 
 /* Ensure the footer is hidden when Home is active, if you prefer */
 #home ~ .site-footer {
@@ -466,9 +428,8 @@ body {
 /* 3D OPEN BOOK STYLES */
 .book-container {
   width: 100%;
-  max-width: 600px;
-  height: auto;
-  aspect-ratio: 1.5 / 1;
+  max-width: 600px; /* Adjust this to fit your images */
+  height: 400px;    /* Adjust this to fit your images */
   margin: 0 auto;
   position: relative;
   perspective: 1500px;
