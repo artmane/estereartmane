@@ -125,14 +125,15 @@ body {
 #home h1:hover { color: #0000ee; }
 
 #home .tagline {
-  font-size: 14px;
-  color: #444;
+  font-size: 16px;        /* Bigger size to match projects */
+  color: #444;           /* Kept your original darker color */
   text-align: center;
-  max-width: 360px;
-  line-height: 1.6;
+  max-width: 450px;      /* Slightly wider so the bigger text doesn't wrap too much */
+  line-height: 1.7;      /* A bit more breathing room between lines */
   margin-bottom: 24px;
   transition: color 0.15s;
   cursor: pointer;
+  text-transform: none;  /* Forces it to stay normal, not all caps */
 }
 #home .tagline:hover { color: #0000ee; }
 
