@@ -137,57 +137,89 @@ body {
 #home .tagline:hover { color: #0000ee; }
 
 /* SLIDESHOW RECTANGLE */
+/* NOTEBOOK SLIDER */
 .home-slideshow-wrap {
   width: 100%;
-  max-width: 600px;
-  margin: 40px auto 0 auto; /* Added 40px top margin */
+  max-width: 650px;
+  margin: 40px auto 0 auto;
   position: relative;
 }
 
 .home-slideshow-frame {
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   position: relative;
   overflow: hidden;
-  background: #f5f5f5;
-  aspect-ratio: 16 / 9;
+  background: #fff;
+  aspect-ratio: 1.4 / 1; /* Notebook shape */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-.home-slide {
-  display: none;
-  width: 100%;
+.notebook-slider {
+  display: flex;
+  width: 200%; /* Two spreads wide */
   height: 100%;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.notebook-spread {
+  display: flex;
+  width: 50%; /* One spread fills the frame */
+  height: 100%;
+}
+
+.notebook-page {
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+/* The "Spine" shadow in the middle */
+.notebook-page:first-child::after {
+  content: '';
   position: absolute;
-  top: 0; left: 0;
+  right: 0;
+  top: 0;
+  width: 15px;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.03));
+  z-index: 2;
 }
-.home-slide.active {
-  display: block;
-}
-.home-slide video,
-.home-slide img {
+
+.notebook-page img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-/* Dot indicators */
-.home-dots {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 10px;
-}
-.home-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ccc;
+.notebook-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #888;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
-  transition: background 0.2s;
+  z-index: 10;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
 }
-.home-dot.active {
-  background: #555;
+
+.notebook-arrow:hover { color: #0000ee; border-color: #0000ee; }
+.notebook-arrow.left { left: -45px; }
+.notebook-arrow.right { right: -45px; }
+
+@media (max-width: 900px) {
+  .notebook-arrow.left { left: 10px; }
+  .notebook-arrow.right { right: 10px; }
+  .home-slideshow-wrap { max-width: 90%; }
 }
 
 /* Bazuka circular image at bottom */
@@ -377,5 +409,98 @@ body {
   display: block;
 }
 
+/* 3D BOOK STYLES */
+/* 3D OPEN BOOK STYLES */
+.book-container {
+  width: 100%;
+  max-width: 600px; /* Adjust this to fit your images */
+  height: 400px;    /* Adjust this to fit your images */
+  margin: 0 auto;
+  position: relative;
+  perspective: 1500px;
+  display: flex;
 }
 
+.book-page {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform-style: preserve-3d;
+}
+
+.left-side-base {
+  left: 0;
+  z-index: 1;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  pointer-events: none; /* This lets your mouse click 'through' to the right page */
+}
+
+#moving-page {
+  right: 0;
+  transform-origin: left center; /* Hinges on the spine */
+  z-index: 2;
+  cursor: pointer;
+}
+
+.page-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+.page-side.back {
+  transform: rotateY(180deg);
+  background-image: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 15%);
+}
+
+.page-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-control { display: none; }
+
+/* When you click, the right page flips over to the left side */
+/* This skips over the left page to find the moving page */
+#flip-1:checked + .left-side-base + #moving-page {
+  transform: rotateY(-180deg);
+  z-index: 10;
+}
+
+/* This makes sure the back of the page is visible when flipped */
+.page-side.back {
+  transform: rotateY(180deg);
+  z-index: 2;
+  background-image: linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 15%);
+}
+
+/* Arrow Positioning */
+.notebook-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.notebook-arrow.left { left: -50px; }
+.notebook-arrow.right { right: -50px; }
+
+@media (max-width: 800px) {
+  .notebook-arrow.left { left: 5px; }
+  .notebook-arrow.right { right: 5px; }
+}
+}

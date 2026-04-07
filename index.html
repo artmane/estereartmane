@@ -131,20 +131,27 @@
       </p>
 
       <!-- Slideshow rectangle replacing the video -->
-      <div class="home-slideshow-wrap">
-        <div class="home-slideshow-frame" id="home-slideshow">
-          <div class="home-slide active" id="slide-0">
-            <video id="home-video" src="videos/Estere_2.mp4" muted loop playsinline></video>
+     <div class="home-slideshow-wrap">
+        <button class="notebook-arrow left" onclick="changeSpread(-1)">←</button>
+        <button class="notebook-arrow right" onclick="changeSpread(1)">→</button>
+
+        <div class="book-container">
+          <input type="checkbox" id="flip-1" class="flip-control">
+          
+          <div class="book-page left-side-base">
+            <div class="page-side">
+              <img src="images/notebook1.png" alt="">
+            </div>
           </div>
-          <!-- Add more slides here as needed, e.g.:
-          <div class="home-slide" id="slide-1">
-            <img src="images/YOUR_IMAGE.jpg" alt="">
-          </div>
-          -->
-        </div>
-        <div class="home-dots" id="home-dots">
-          <div class="home-dot active" onclick="goToSlide(0)"></div>
-          <!-- Add more dots when you add more slides -->
+
+          <label for="flip-1" class="book-page" id="moving-page">
+            <div class="page-side front">
+              <img src="images/notebook2.png" alt="">
+            </div>
+            <div class="page-side back">
+              <img src="images/notebook3.png" alt="">
+            </div>
+          </label>
         </div>
       </div>
 
@@ -633,19 +640,16 @@
   var birdAudioPlaying = false;
 
   // Slideshow
-  var currentSlide = 0;
-  var totalSlides = document.querySelectorAll('.home-slide').length;
-
-  function goToSlide(n) {
-    var slides = document.querySelectorAll('.home-slide');
-    var dots = document.querySelectorAll('.home-dot');
-    slides.forEach(function(s) { s.classList.remove('active'); });
-    dots.forEach(function(d) { d.classList.remove('active'); });
-    if (slides[n]) slides[n].classList.add('active');
-    if (dots[n]) dots[n].classList.add('active');
-    currentSlide = n;
+function changeSpread(n) {
+  const checker = document.getElementById('flip-1');
+  if (!checker) return;
+  
+  if (n > 0) {
+    checker.checked = true;  // Turns the page forward
+  } else {
+    checker.checked = false; // Turns the page back
   }
-
+}
   function toggleBirdAudio() {
     var audio = document.getElementById('bird-audio');
     if (!audio) return;
@@ -881,4 +885,4 @@
 </script>
 
 </body>
-</html>
+</html> 
