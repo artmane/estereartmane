@@ -646,7 +646,7 @@
   var birdAudioPlaying = false;
 
   // Slideshow
-var currentSpreadIndex = 0;
+  var currentSpreadIndex = 0;
   var isAnimating = false;
   var spreads = [
     ["notebook1.png", "notebook2.png"],
@@ -660,6 +660,13 @@ var currentSpreadIndex = 0;
     ["15.jpg", "16.jpg"]
   ];
 
+  // PRE-LOADER: This stops ghost pages by forcing the browser to download images early
+  spreads.forEach(function(pair) {
+    new Image().src = "images/" + pair[0];
+    new Image().src = "images/" + pair[1];
+  });
+
+
   function changeSpread(n) {
     if (isAnimating) return;
     isAnimating = true;
@@ -670,60 +677,63 @@ var currentSpreadIndex = 0;
     const pRightFront = document.getElementById('page-right-front');
     const pLeftBack = document.getElementById('page-left-back');
 
+    let targetIndex;
     if (n > 0) {
-      // FORWARD ANIMATION
-      let nextIndex = (currentSpreadIndex + 1) % spreads.length;
+      // --- FORWARD (Right to Left) ---
+      targetIndex = (currentSpreadIndex + 1) % spreads.length;
       
-      // Setup the hidden sides
-      pLeftBack.src = "images/" + spreads[nextIndex][0];
-      pRightUnder.src = "images/" + spreads[nextIndex][1];
+      pLeftBack.src = "images/" + spreads[targetIndex][0];
+      pRightUnder.src = "images/" + spreads[targetIndex][1];
       
-      // Start the turn
+      movingPage.style.transition = "transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
       movingPage.style.transform = "rotateY(-180deg)";
 
       setTimeout(() => {
-        // Swap content while page is flat on the left
-        currentSpreadIndex = nextIndex;
+        currentSpreadIndex = targetIndex;
         pLeft.src = "images/" + spreads[currentSpreadIndex][0];
         pRightFront.src = "images/" + spreads[currentSpreadIndex][1];
         
-        // Snap back to right position instantly
         movingPage.style.transition = "none";
         movingPage.style.transform = "rotateY(0deg)";
-        
-        // Restore transition for next click
-        setTimeout(() => {
-          movingPage.style.transition = "transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
-          isAnimating = false;
-        }, 50);
-      }, 800); 
+        isAnimating = false;
+      }, 800);
 
     } else {
-      // BACKWARD ANIMATION
-      let prevIndex = (currentSpreadIndex - 1 < 0) ? spreads.length - 1 : currentSpreadIndex - 1;
-      
-      // 1. Instantly jump the moving page to the left side
-      movingPage.style.transition = "none";
+      // --- BACKWARD (Left to Right) ---
+      targetIndex = (currentSpreadIndex - 1 < 0) ? spreads.length - 1 : currentSpreadIndex - 1;
+
+      // 1. Keep the Right Side looking like the CURRENT spread for now
+      pRightUnder.src = "images/" + spreads[currentSpreadIndex][1];
+      pRightFront.src = "images/" + spreads[currentSpreadIndex][1];
+
+      // 2. Prepare the flap to carry the CURRENT left page back over
       pLeftBack.src = "images/" + spreads[currentSpreadIndex][0];
-      pRightFront.src = "images/" + spreads[prevIndex][1]; 
+
+      // 3. Jump the flap to the left instantly
+      movingPage.style.transition = "none";
+      movingPage.style.opacity = "0";
       movingPage.style.transform = "rotateY(-180deg)";
-      
-      // 2. Update the background left page to the previous one
-      pLeft.src = "images/" + spreads[prevIndex][0];
-      
-      // 3. Smoothly un-flip back to the right
+
       setTimeout(() => {
+        // 4. Update the STATIC LEFT and the FRONT of the flap while hidden
+        pLeft.src = "images/" + spreads[targetIndex][0];
+        pRightFront.src = "images/" + spreads[targetIndex][1];
+        
+        // 5. Show and swing back
+        movingPage.style.opacity = "1";
         movingPage.style.transition = "transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
         movingPage.style.transform = "rotateY(0deg)";
         
         setTimeout(() => {
-          currentSpreadIndex = prevIndex;
+          currentSpreadIndex = targetIndex;
+          // 6. FINALLY update the background right page after it's been covered
+          pRightUnder.src = "images/" + spreads[currentSpreadIndex][1];
           isAnimating = false;
         }, 800);
       }, 50);
     }
   }
-
+  
   function finalizeFlip() {
     const checker = document.getElementById('flip-1');
     // Clean up: make sure the static images match the new spread
