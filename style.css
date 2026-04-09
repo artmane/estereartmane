@@ -485,8 +485,9 @@ body {
 /* 3D OPEN BOOK STYLES */
 .book-container {
   width: 100%;
-  max-width: 600px; /* Adjust this to fit your images */
-  height: 400px;    /* Adjust this to fit your images */
+  max-width: 600px;
+  height: auto;
+  aspect-ratio: 1.4 / 1;
   margin: 0 auto;
   position: relative;
   perspective: 1500px;
