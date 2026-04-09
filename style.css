@@ -419,18 +419,25 @@ body {
   }
 
   /* Notebook Resizing - Forces the shape from your image */
-  .home-slideshow-wrap, .book-container { 
-    max-width: 85% !important; 
-    width: 85% !important;
-    height: auto !important;
-    aspect-ratio: 1.4 / 1 !important;
-    margin: 20px auto 0 auto !important;
-  }
-  
-  .left-side-base, #moving-page, .page-side {
-    width: 100% !important;
-    height: 100% !important;
-  }
+.home-slideshow-wrap { 
+  max-width: 90% !important; 
+  width: 90% !important;
+  margin: 20px auto 0 auto !important;
+  position: relative;
+}
+
+.book-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1.4 / 1 !important;
+  position: relative !important;
+}
+
+.left-side-base, #moving-page, .page-side {
+  width: 100% !important;
+  height: 100% !important;
+}
 
   .notebook-arrow { width: 28px; height: 28px; font-size: 12px; }
   .notebook-arrow.left { left: -30px; }
