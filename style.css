@@ -53,7 +53,7 @@ body {
   height: 100vh;
   overflow-y: auto;
   z-index: 200;
-  background: #fff;
+  background: transparent;
 }
 
 /* All menu sections equally spaced — no extra margin-top on menu-bottom */
@@ -96,11 +96,11 @@ body {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  width: 180px; /* Made slightly larger to match Image 1 */
+  width: 180px;
   height: auto;
   pointer-events: none;
-  opacity: 0.2; /* Subtle transparency */
-  z-index: -1;   /* Puts them behind all text and images */
+  opacity: 0.2;
+  z-index: 1;
 }
 .home-swirl.left {
   left: 20px; /* Adds the gap from the edge */
