@@ -127,7 +127,7 @@
 
       <h1 onclick="showPageNoWorks('about')">Estere Artmane</h1>
      <p class="tagline" onclick="showPageNoWorks('about')">
-  <span data-en="Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making<br>across digital and physical media." data-lv="Multidiciplināra vizuālā māksliniece bāzēta Latvijā,<br>pētot uztveri un tēlu veidošanu pāri<br>digitālajiem un fiziskajiem medijiem.">Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.</span>
+<span data-en="Multidisciplinary visual artist based in Latvia, exploring perception and image-making across digital and physical media." data-lv="Daudzdisciplināra vizuālā māksliniece no Latvijas, kura savā praksē pēta uztveri un attēlu veidošanu digitālos un fiziskos medijos">Multidisciplinary visual artist based in Latvia, exploring perception and image-making across digital and physical media.</span>
 </p>
 
       <!-- Slideshow rectangle replacing the video -->
@@ -999,8 +999,8 @@ function initContactVideo() {
     });
     
     // Simple fix to update the home tagline manually, as the nested structure makes data-attributes tricky
-    const taglineLV = "Daudzdisciplināra vizuālā māksliniece no Latvijas,<br>kura savā praksē pēta uztveri un attēlu veidošanu<br>digitālos un fiziskos medijos";
-    const taglineEN = "Multidisciplinary visual artist based in Latvia,<br>exploring perception and image-making across<br>digital and physical media.";
+    const taglineLV = "Daudzdisciplināra vizuālā māksliniece no Latvijas, kura savā praksē pēta uztveri un attēlu veidošanu digitālos un fiziskos medijos";
+const taglineEN = "Multidisciplinary visual artist based in Latvia, exploring perception and image-making across digital and physical media.";
     
     document.querySelector('.tagline span').innerHTML = (lang === 'lv') ? taglineLV : taglineEN;
   }
