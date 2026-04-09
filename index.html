@@ -809,29 +809,27 @@
     if (iframe) iframe.src = iframe.src;
   }
 
+// This makes every image in your project pages clickable for the pop-up
   document.querySelectorAll('.page img').forEach(function(img) {
+    // Skip the profile picture and small icons
+    if (img.classList.contains('about-portrait') || img.parentElement.classList.contains('home-bazuka')) return;
+
     img.style.cursor = 'zoom-in';
     img.addEventListener('click', function(e) {
       e.stopPropagation();
-      document.getElementById('lightbox-img').src = this.src;
-      document.getElementById('lightbox').classList.add('open');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      lightboxImg.src = this.src;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Stop background scrolling
     });
   });
 
-function initContactVideo() {
-    var v = document.getElementById('contact-video');
-    if (!v) return;
-    v.currentTime = 2;
-    v.play();
-    v.addEventListener('timeupdate', function() {
-      if (v.currentTime >= 16) v.currentTime = 2;
-    });
-  }
-
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
   }
-
 
   window.addEventListener('load', function() {
     initHomeVideo();

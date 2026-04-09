@@ -217,10 +217,36 @@ body {
 .notebook-arrow.left { left: -45px; }
 .notebook-arrow.right { right: -45px; }
 
+/* --- RESPONSIVE / MOBILE FIX --- */
 @media (max-width: 900px) {
-  .notebook-arrow.left { left: 10px; }
-  .notebook-arrow.right { right: 10px; }
-  .home-slideshow-wrap { max-width: 90%; }
+  .menu { display: none; left: 0; width: 260px; padding: 24px 28px; transform: translateX(-100%); transition: transform 0.25s; background: #fff; }
+  .menu.open { display: block; transform: translateX(0); z-index: 400; }
+  .hamburger { display: flex; }
+  .lang-switch { right: 20px; top: 24px; }
+  .page { padding: 52px 24px 0 24px; }
+  .home-swirl { display: none; }
+
+  #home { padding: 40px 20px; }
+  #home h1 { font-size: 28px; }
+  #home .tagline { font-size: 14px; max-width: 280px; margin: 0 auto 30px auto; }
+
+  /* FIX: This forces the notebook to keep its shape on mobile */
+  .home-slideshow-wrap { 
+    max-width: 100% !important; 
+    width: 100% !important;
+    margin: 20px auto 0 auto !important;
+  }
+
+  .book-container {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1.4 / 1 !important; /* Forces the rectangle shape */
+  }
+
+  /* Make arrows slightly smaller so they don't overlap the book */
+  .notebook-arrow { width: 28px; height: 28px; font-size: 12px; }
+  .notebook-arrow.left { left: -15px; }
+  .notebook-arrow.right { right: -15px; }
 }
 
 /* Bazuka circular image at bottom */
