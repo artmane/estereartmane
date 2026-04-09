@@ -568,4 +568,38 @@ body {
   .notebook-arrow.left { left: 5px; }
   .notebook-arrow.right { right: 5px; }
 }
+
+/* LIGHTBOX */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  transition: background 0.35s ease;
+}
+.lightbox-overlay.open {
+  display: flex;
+  background: rgba(0,0,0,0.82);
+}
+.lightbox-overlay img {
+  max-width: 70vw;
+  max-height: 75vh;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  transform: scale(0.88);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.35s ease;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+.lightbox-overlay.open img {
+  transform: scale(1);
+  opacity: 1;
 }

@@ -618,12 +618,18 @@
       </div>
     </div>
 
-    <!-- CONTACT -->
+ <!-- CONTACT -->
     <div id="contact" class="page">
       <h1 class="page-title">Contact</h1>
       <div class="contact-content">
         <p><span class="email-copy" onclick="copyEmail()">estereartmane@gmail.com</span></p>
         <p><a href="https://www.instagram.com/bazukabazyka/" target="_blank">@bazukabazyka</a></p>
+      </div>
+      <div style="display:flex;justify-content:center;margin-top:180px;">
+        <a href="https://vkn.x-i.net/2025/page_1-1.html" target="_blank" style="display:block;max-width:260px;text-align:center;text-decoration:none;color:inherit;">
+          <img src="images/500_1gifs.gif" alt="GIF" style="width:100%;height:auto;display:block;image-rendering:pixelated;cursor:pointer;">
+          <p style="font-size:12px;color:#aaa;margin-top:6px;letter-spacing:0.05em;">↗ view</p>
+        </a>
       </div>
     </div>
 
@@ -634,6 +640,9 @@
   <p>© Estere Artmane 2026</p>
 </footer>
 
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
 <button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
 <div class="toast" id="toast">email copied</div>
 
@@ -800,6 +809,30 @@
     if (iframe) iframe.src = iframe.src;
   }
 
+  document.querySelectorAll('.page img').forEach(function(img) {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('lightbox-img').src = this.src;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+
+function initContactVideo() {
+    var v = document.getElementById('contact-video');
+    if (!v) return;
+    v.currentTime = 2;
+    v.play();
+    v.addEventListener('timeupdate', function() {
+      if (v.currentTime >= 16) v.currentTime = 2;
+    });
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+
   window.addEventListener('load', function() {
     initHomeVideo();
   });
@@ -867,8 +900,9 @@
       return;
     }
     hideAllPages();
-    var el = document.getElementById(pageId);
+   var el = document.getElementById(pageId);
     if (el) el.style.display = 'block';
+    if (pageId === 'contact') setTimeout(initContactVideo, 60);
     currentPage = pageId;
     window.scrollTo({ top: 0 });
     closeAllSubMenus();
