@@ -21,7 +21,10 @@
         <span data-en="Works" data-lv="Darbi">Works</span>
       </div>
       <div class="submenu" id="works-sub">
-
+        
+   <div class="submenu-item" id="tattoo-item" onclick="showPage('tattoo'); closeMobileMenu()">
+          <span data-en="tattoo" data-lv="tetovējums">tattoo</span>
+        </div>
         <div class="submenu-item" id="photo-item" onclick="toggleSection('photography'); closeMobileMenu()">
           <span data-en="photography" data-lv="fotogrāfija">photography</span>
         </div>
@@ -78,9 +81,6 @@
           <span data-en="curation" data-lv="kuratorija">curation</span>
         </div>
 
-        <div class="submenu-item" id="tattoo-item" onclick="showPage('tattoo'); closeMobileMenu()">
-          <span data-en="tattoo" data-lv="tetovējums">tattoo</span>
-        </div>
 
         <div class="submenu-item" id="text-item" onclick="toggleSection('textpage'); closeMobileMenu()">
           <span data-en="text" data-lv="teksts">text</span>
@@ -131,27 +131,33 @@
 </p>
 
       <!-- Slideshow rectangle replacing the video -->
-     <div class="home-slideshow-wrap">
+    <div class="home-slideshow-wrap">
         <button class="notebook-arrow left" onclick="changeSpread(-1)">←</button>
         <button class="notebook-arrow right" onclick="changeSpread(1)">→</button>
 
         <div class="book-container">
-          <input type="checkbox" id="flip-1" class="flip-control">
+          <input type="checkbox" id="flip-1" class="flip-control" style="display:none;">
           
           <div class="book-page left-side-base">
             <div class="page-side">
-              <img src="images/notebook1.png" alt="">
+              <img id="page-left" src="images/notebook1.png" alt="">
             </div>
           </div>
 
-          <label for="flip-1" class="book-page" id="moving-page">
+          <div class="book-page" style="position:absolute; right:0; z-index:1; pointer-events:none;">
+            <div class="page-side">
+              <img id="page-right-under" src="images/2.jpg" alt="">
+            </div>
+          </div>
+
+          <div class="book-page" id="moving-page" style="z-index:10; transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1); transform-origin: left center;">
             <div class="page-side front">
-              <img src="images/notebook2.png" alt="">
+              <img id="page-right-front" src="images/notebook2.png" alt="">
             </div>
-            <div class="page-side back">
-              <img src="images/notebook3.png" alt="">
+            <div class="page-side back" style="transform: rotateY(180deg);">
+              <img id="page-left-back" src="images/1.jpg" alt="">
             </div>
-          </label>
+          </div>
         </div>
       </div>
 
@@ -640,16 +646,94 @@
   var birdAudioPlaying = false;
 
   // Slideshow
-function changeSpread(n) {
-  const checker = document.getElementById('flip-1');
-  if (!checker) return;
-  
-  if (n > 0) {
-    checker.checked = true;  // Turns the page forward
-  } else {
-    checker.checked = false; // Turns the page back
+var currentSpreadIndex = 0;
+  var isAnimating = false;
+  var spreads = [
+    ["notebook1.png", "notebook2.png"],
+    ["1.jpg", "2.jpg"],
+    ["3.jpg", "4.jpg"],
+    ["5.jpg", "6.jpg"],
+    ["7.jpg", "8.jpg"],
+    ["9.jpg", "10.jpg"],
+    ["11.jpg", "12.jpg"],
+    ["13.jpg", "14.jpg"],
+    ["15.jpg", "16.jpg"]
+  ];
+
+  function changeSpread(n) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const movingPage = document.getElementById('moving-page');
+    const pLeft = document.getElementById('page-left');
+    const pRightUnder = document.getElementById('page-right-under');
+    const pRightFront = document.getElementById('page-right-front');
+    const pLeftBack = document.getElementById('page-left-back');
+
+    if (n > 0) {
+      // FORWARD ANIMATION
+      let nextIndex = (currentSpreadIndex + 1) % spreads.length;
+      
+      // Setup the hidden sides
+      pLeftBack.src = "images/" + spreads[nextIndex][0];
+      pRightUnder.src = "images/" + spreads[nextIndex][1];
+      
+      // Start the turn
+      movingPage.style.transform = "rotateY(-180deg)";
+
+      setTimeout(() => {
+        // Swap content while page is flat on the left
+        currentSpreadIndex = nextIndex;
+        pLeft.src = "images/" + spreads[currentSpreadIndex][0];
+        pRightFront.src = "images/" + spreads[currentSpreadIndex][1];
+        
+        // Snap back to right position instantly
+        movingPage.style.transition = "none";
+        movingPage.style.transform = "rotateY(0deg)";
+        
+        // Restore transition for next click
+        setTimeout(() => {
+          movingPage.style.transition = "transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
+          isAnimating = false;
+        }, 50);
+      }, 800); 
+
+    } else {
+      // BACKWARD ANIMATION
+      let prevIndex = (currentSpreadIndex - 1 < 0) ? spreads.length - 1 : currentSpreadIndex - 1;
+      
+      // 1. Instantly jump the moving page to the left side
+      movingPage.style.transition = "none";
+      pLeftBack.src = "images/" + spreads[currentSpreadIndex][0];
+      pRightFront.src = "images/" + spreads[prevIndex][1]; 
+      movingPage.style.transform = "rotateY(-180deg)";
+      
+      // 2. Update the background left page to the previous one
+      pLeft.src = "images/" + spreads[prevIndex][0];
+      
+      // 3. Smoothly un-flip back to the right
+      setTimeout(() => {
+        movingPage.style.transition = "transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
+        movingPage.style.transform = "rotateY(0deg)";
+        
+        setTimeout(() => {
+          currentSpreadIndex = prevIndex;
+          isAnimating = false;
+        }, 800);
+      }, 50);
+    }
   }
-}
+
+  function finalizeFlip() {
+    const checker = document.getElementById('flip-1');
+    // Clean up: make sure the static images match the new spread
+    document.getElementById('page-left').src = "images/" + spreads[currentSpreadIndex][0];
+    document.getElementById('page-right-front').src = "images/" + spreads[currentSpreadIndex][1];
+    
+    checker.style.transition = "none";
+    checker.checked = false; // Reset for next time
+    isAnimating = false;
+  }
   function toggleBirdAudio() {
     var audio = document.getElementById('bird-audio');
     if (!audio) return;
