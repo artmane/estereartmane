@@ -7,6 +7,7 @@
 <title>Estere Artmane — Multidisciplinary Visual Artist, Riga</title>
 <meta name="description" content="Estere Artmane is a multidisciplinary visual artist based in Riga, Latvia. Working across photography, video, graphic design, tattoo, and interactive media.">
 <meta name="author" content="Estere Artmane">
+<link rel="icon" type="image/png" href="images/bazuka.png">
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime&display=swap" rel="stylesheet">
 </head>
@@ -666,12 +667,13 @@
 <div class="toast" id="toast">email copied</div>
 
 <script>
-  var worksOpen = false;
-  var worksVisited = false;
-  var cvOpen = false;
-  var currentPage = '';
-  var soundOn = false;
-  var birdAudioPlaying = false;
+ var worksOpen = false;
+var worksVisited = false;
+var cvOpen = false;
+var currentPage = '';
+var currentLang = 'en';
+var soundOn = false;
+var birdAudioPlaying = false;
 
   // Slideshow
   var currentSpreadIndex = 0;
@@ -994,8 +996,10 @@
 
   function toggleCV() {
     cvOpen = !cvOpen;
-    document.getElementById('cv-body').classList.toggle('open', cvOpen);
-    document.getElementById('cv-arrow').textContent = cvOpen ? ' ↑' : ' ↓';
+   document.getElementById('cv-body').classList.toggle('open', cvOpen);
+  document.getElementById('cv-arrow').textContent = cvOpen ? ' ↑' : ' ↓';
+  const currentLang = document.getElementById('lang-lv').classList.contains('active') ? 'lv' : 'en';
+  document.querySelector('.cv-toggle').childNodes[0].textContent = currentLang === 'lv' ? 'CV + Izglītība ' : 'CV + Education ';
   }
 
   function copyEmail() {
@@ -1006,7 +1010,8 @@
     });
   }
 
- function setLang(lang) {
+function setLang(lang) {
+  currentLang = lang;
   document.getElementById('lang-en').classList.toggle('active', lang === 'en');
   document.getElementById('lang-lv').classList.toggle('active', lang === 'lv');
 
@@ -1144,113 +1149,104 @@
   });
 
   // CV Section
-if (lang === 'lv') {
-  document.querySelector('.cv-heading').textContent = 'Pieredze';
-  document.querySelectorAll('.cv-heading')[1].textContent = 'Izglītība';
-  document.querySelectorAll('.cv-heading')[2].textContent = 'Prasmes';
-  document.querySelectorAll('.cv-heading')[3].textContent = 'Valodas';
-
+// CV Section
+  const cvHeadings = document.querySelectorAll('.cv-heading');
   const cvLists = document.querySelectorAll('.cv-body ul');
 
-  cvLists[0].innerHTML = `
-    <div class="cv-year">2025</div>
-    <li>Dalībniece grupas izstādē <em>Idēt, muldēt, klusēt</em> Jaunmoku pilī</li>
-    <li>Teksta autore multimēdiju izstādei <em>Gaismas atmiņa</em> mākslas telpā MALA</li>
-    <li>Tetovēšanas māksliniece kultūras vietās (Cehs, Lastādija) publisko pasākumu laikā</li>
-    <div class="cv-year">2024</div>
-    <li>Rakstu autore kultūras platformā Satori</li>
-    <li>Vizuālā satura veidotāja Ziedoņa muzejam; dalībniece mākslas rezidencē</li>
-    <li>Publikācija Mākslas Žurnālā (sadaļa "Ielu māksla")</li>
-    <li>Izstādes uzraudzītāja izstādei <em>Everything Is Fine Between Us</em></li>
-    <div class="cv-year">2023</div>
-    <li>Līdzkuratore <em>The Shake Down</em> Homo Novus festivālā</li>
-    <li>Vizuālā identitāte un plakātu dizains The Shake Down</li>
-    <li>Jaunā kuratore Bastard festivālā, Trondheimā (Norvēģija)</li>
-    <li>Māksliniece Lampa sarunu festivālā</li>
-    <li>Sadarbība ar Lonexone — t-kreklu līnija "Unknown"</li>
-    <li>Sertificēta tetovēšanas māksliniece, handpoke tehnika</li>
-    <div class="cv-year">2022</div>
-    <li>Gide izrādei <em>Silence Falls</em></li>
-    <li>Pieci.lv DJ skolas absolvente</li>
-    <li>Barista kafejnīcā Piens un ledus</li>
-    <li>Dalībniece Erasmus projektā <em>Everyday Sexism</em>, Spānijā</li>
-  `;
+  if (lang === 'lv') {
+    document.querySelector('.cv-toggle').childNodes[0].textContent = 'CV + Izglītība ';
+    if (cvHeadings[0]) cvHeadings[0].textContent = 'Pieredze';
+    if (cvHeadings[1]) cvHeadings[1].textContent = 'Izglītība';
+    if (cvHeadings[2]) cvHeadings[2].textContent = 'Prasmes';
+    if (cvHeadings[3]) cvHeadings[3].textContent = 'Valodas';
 
-  cvLists[1].innerHTML = `
-    <li>Latvijas Mākslas akadēmija — Vizuālās komunikācijas BA (turpinās, 2. kurss)</li>
-    <li>Latvijas Laikmetīgās mākslas centrs — Mākslas kritiķu skola</li>
-    <li>Jaunā teātra institūts — Mentorings kuratoriskajā praksē</li>
-    <li>MIKC Rīgas Dizaina un mākslas skola — Komerciālais dizains</li>
-    <li>Cēsu pilsētas mākslas skola — Dizaina nodaļa</li>
-  `;
+    if (cvLists[0]) cvLists[0].innerHTML = `
+      <li>Dalībniece grupas izstādē <em>Idēt, muldēt, klusēt</em> Jaunmoku pilī</li>
+      <li>Teksta autore multimēdiju izstādei <em>Gaismas atmiņa</em> mākslas telpā MALA</li>
+      <li>Tetovēšanas māksliniece kultūras vietās (Cehs, Lastādija) publisko pasākumu laikā</li>
+      <li>Rakstu autore kultūras platformā Satori</li>
+      <li>Vizuālā satura veidotāja Ziedoņa muzejam; dalībniece mākslas rezidencē</li>
+      <li>Publikācija Mākslas Žurnālā (sadaļa "Ielu māksla")</li>
+      <li>Izstādes uzraudzītāja izstādei <em>Everything Is Fine Between Us</em></li>
+      <li>Līdzkuratore <em>The Shake Down</em> Homo Novus festivālā</li>
+      <li>Vizuālā identitāte un plakātu dizains The Shake Down</li>
+      <li>Jaunā kuratore Bastard festivālā, Trondheimā (Norvēģija)</li>
+      <li>Māksliniece Lampa sarunu festivālā</li>
+      <li>Sadarbība ar Lonexone — t-kreklu līnija "Unknown"</li>
+      <li>Sertificēta tetovēšanas māksliniece, handpoke tehnika</li>
+      <li>Gide izrādei <em>Silence Falls</em></li>
+      <li>Pieci.lv DJ skolas absolvente</li>
+      <li>Barista kafejnīcā Piens un ledus</li>
+      <li>Dalībniece Erasmus projektā <em>Everyday Sexism</em>, Spānijā</li>
+    `;
+    if (cvLists[1]) cvLists[1].innerHTML = `
+      <li>Latvijas Mākslas akadēmija — Vizuālās komunikācijas BA (turpinās, 2. kurss)</li>
+      <li>Latvijas Laikmetīgās mākslas centrs — Mākslas kritiķu skola</li>
+      <li>Jaunā teātra institūts — Mentorings kuratoriskajā praksē</li>
+      <li>MIKC Rīgas Dizaina un mākslas skola — Komerciālais dizains</li>
+      <li>Cēsu pilsētas mākslas skola — Dizaina nodaļa</li>
+    `;
+    if (cvLists[2]) cvLists[2].innerHTML = `
+      <li>Adobe — Photoshop, Illustrator, InDesign, Premiere Pro, Acrobat, After Effects, Audition, Lightroom</li>
+      <li>Citas — DaVinci Resolve, Dragonframe, Blender, Figma, Ableton, Visual Studio Code, p5.js</li>
+      <li>Digitālā un analogā fotogrāfija, video un apgaismojuma produkcija</li>
+      <li>Vizuālā identitāte un plakātu dizains</li>
+      <li>Izstāžu koordinācija un kuratoriskā sadarbība</li>
+    `;
+    if (cvLists[3]) cvLists[3].innerHTML = `
+      <li>Latviešu — dzimtā</li>
+      <li>Angļu — augsts līmenis</li>
+      <li>Krievu — sarunvaloda</li>
+      <li>Vācu — iesācējs</li>
+    `;
 
-  cvLists[2].innerHTML = `
-    <li>Adobe — Photoshop, Illustrator, InDesign, Premiere Pro, Acrobat, After Effects, Audition, Lightroom</li>
-    <li>Citas — DaVinci Resolve, Dragonframe, Blender, Figma, Ableton, Visual Studio Code, p5.js</li>
-    <li>Digitālā un analogā fotogrāfija, video un apgaismojuma produkcija</li>
-    <li>Vizuālā identitāte un plakātu dizains</li>
-    <li>Izstāžu koordinācija un kuratoriskā sadarbība</li>
-  `;
+  } else {
+    document.querySelector('.cv-toggle').childNodes[0].textContent = 'CV + Education ';
+    if (cvHeadings[0]) cvHeadings[0].textContent = 'Experience';
+    if (cvHeadings[1]) cvHeadings[1].textContent = 'Education';
+    if (cvHeadings[2]) cvHeadings[2].textContent = 'Skills';
+    if (cvHeadings[3]) cvHeadings[3].textContent = 'Languages';
 
-  cvLists[3].innerHTML = `
-    <li>Latviešu — dzimtā</li>
-    <li>Angļu — augsts līmenis</li>
-    <li>Krievu — sarunvaloda</li>
-    <li>Vācu — iesācējs</li>
-  `;
-} else {
-  document.querySelector('.cv-heading').textContent = 'Experience';
-  document.querySelectorAll('.cv-heading')[1].textContent = 'Education';
-  document.querySelectorAll('.cv-heading')[2].textContent = 'Skills';
-  document.querySelectorAll('.cv-heading')[3].textContent = 'Languages';
-
-  cvLists[0].innerHTML = `
-    <div class="cv-year">2025</div>
-    <li>Participant in group exhibition <em>Idēt, muldēt, klusēt</em> at Jaunmoku pils</li>
-    <li>Text author for multimedia exhibition <em>Memory of Light</em> at art space MALA</li>
-    <li>Tattoo artist at cultural venues (Cehs, Lastādija) during public events</li>
-    <div class="cv-year">2024</div>
-    <li>Author of articles for the cultural platform Satori</li>
-    <li>Visual content creator for the Ziedonis Museum; participant in art residency</li>
-    <li>Publication in Mākslas Žurnāls ("Street Art" section)</li>
-    <li>Exhibition supervisor for <em>Everything Is Fine Between Us</em></li>
-    <div class="cv-year">2023</div>
-    <li>Co-curator of <em>The Shake Down</em> at the Homo Novus festival</li>
-    <li>Visual identity and poster design for The Shake Down</li>
-    <li>Young curator at Bastard Festival, Trondheim (Norway)</li>
-    <li>Artist at Lampa Conversation Festival</li>
-    <li>Collaboration with Lonexone – T-shirt line "Unknown"</li>
-    <li>Certified tattoo artist, handpoke technique</li>
-    <div class="cv-year">2022</div>
-    <li>Guide for the performance <em>Silence Falls</em></li>
-    <li>Graduate of Pieci.lv DJ School</li>
-    <li>Barista at Piens un ledus</li>
-    <li>Participant in Erasmus project <em>Everyday Sexism</em>, Spain</li>
-  `;
-
-  cvLists[1].innerHTML = `
-    <li>Art Academy of Latvia — Visual Communication BA (ongoing, year 2)</li>
-    <li>Latvian Centre for Contemporary Art — Art Critics School</li>
-    <li>New Theatre Institute of Latvia — Mentorship in Curatorial Practice</li>
-    <li>MIKC Riga School of Design and Art — Commercial Design</li>
-    <li>Cēsis City Art School — Design Department</li>
-  `;
-
-  cvLists[2].innerHTML = `
-    <li>Adobe — Photoshop, Illustrator, InDesign, Premiere Pro, Acrobat, After Effects, Audition, Lightroom</li>
-    <li>Other — DaVinci Resolve, Dragonframe, Blender, Figma, Ableton, Visual Studio Code p5.js</li>
-    <li>Digital and analog photography, video and set lighting production</li>
-    <li>Visual identity and poster design</li>
-    <li>Exhibition coordination and curatorial collaboration</li>
-  `;
-
-  cvLists[3].innerHTML = `
-    <li>Latvian — Native</li>
-    <li>English — Advanced</li>
-    <li>Russian — Conversational</li>
-    <li>German — Beginner</li>
-  `;
-}
+    if (cvLists[0]) cvLists[0].innerHTML = `
+      <li>Participant in group exhibition <em>Idēt, muldēt, klusēt</em> at Jaunmoku pils</li>
+      <li>Text author for multimedia exhibition <em>Memory of Light</em> at art space MALA</li>
+      <li>Tattoo artist at cultural venues (Cehs, Lastādija) during public events</li>
+      <li>Author of articles for the cultural platform Satori</li>
+      <li>Visual content creator for the Ziedonis Museum; participant in art residency</li>
+      <li>Publication in Mākslas Žurnāls ("Street Art" section)</li>
+      <li>Exhibition supervisor for <em>Everything Is Fine Between Us</em></li>
+      <li>Co-curator of <em>The Shake Down</em> at the Homo Novus festival</li>
+      <li>Visual identity and poster design for The Shake Down</li>
+      <li>Young curator at Bastard Festival, Trondheim (Norway)</li>
+      <li>Artist at Lampa Conversation Festival</li>
+      <li>Collaboration with Lonexone – T-shirt line "Unknown"</li>
+      <li>Certified tattoo artist, handpoke technique</li>
+      <li>Guide for the performance <em>Silence Falls</em></li>
+      <li>Graduate of Pieci.lv DJ School</li>
+      <li>Barista at Piens un ledus</li>
+      <li>Participant in Erasmus project <em>Everyday Sexism</em>, Spain</li>
+    `;
+    if (cvLists[1]) cvLists[1].innerHTML = `
+      <li>Art Academy of Latvia — Visual Communication BA (ongoing, year 2)</li>
+      <li>Latvian Centre for Contemporary Art — Art Critics School</li>
+      <li>New Theatre Institute of Latvia — Mentorship in Curatorial Practice</li>
+      <li>MIKC Riga School of Design and Art — Commercial Design</li>
+      <li>Cēsis City Art School — Design Department</li>
+    `;
+    if (cvLists[2]) cvLists[2].innerHTML = `
+      <li>Adobe — Photoshop, Illustrator, InDesign, Premiere Pro, Acrobat, After Effects, Audition, Lightroom</li>
+      <li>Other — DaVinci Resolve, Dragonframe, Blender, Figma, Ableton, Visual Studio Code, p5.js</li>
+      <li>Digital and analog photography, video and set lighting production</li>
+      <li>Visual identity and poster design</li>
+      <li>Exhibition coordination and curatorial collaboration</li>
+    `;
+    if (cvLists[3]) cvLists[3].innerHTML = `
+      <li>Latvian — Native</li>
+      <li>English — Advanced</li>
+      <li>Russian — Conversational</li>
+      <li>German — Beginner</li>
+    `;
+    }
 }
 function toggleMobileMenu() {
   document.getElementById('main-menu').classList.toggle('open');
